@@ -1,6 +1,282 @@
-<html>
-<style>
-   div{min-height:1em;}
-</style>
-<body><span style="font-family:sans-serif;">&lt;!DOCTYPE html&gt;<br/>&lt;html lang=&quot;id&quot;&gt;<br/>&lt;head&gt;<br/>    &lt;meta charset=&quot;UTF-8&quot;&gt;<br/>    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;<br/>    &lt;title&gt;List Orderan Kaos BLNK SQUAD&lt;/title&gt;<br/>    &lt;style&gt;<br/>        body {<br/>            font-family: &#39;Segoe UI&#39;, Tahoma, Geneva, Verdana, sans-serif;<br/>            margin: 20px;<br/>            background-color: #f4f6f9;<br/>            color: #333;<br/>        }<br/>        h1 {<br/>            text-align: center;<br/>            color: #1f4e78;<br/>            margin-bottom: 25px;<br/>        }<br/>        .container {<br/>            max-width: 1000px;<br/>            margin: 0 auto;<br/>            background: #fff;<br/>            padding: 25px;<br/>            border-radius: 10px;<br/>            box-shadow: 0 4px 12px rgba(0,0,0,0.08);<br/>        }<br/>        <br/>        /* Form Tambah Orang */<br/>        .form-card {<br/>            background-color: #eef2f5;<br/>            padding: 20px;<br/>            border-radius: 8px;<br/>            margin-bottom: 30px;<br/>            border: 1px solid #dcdfe3;<br/>        }<br/>        .form-card h3 {<br/>            margin-top: 0;<br/>            color: #1f4e78;<br/>        }<br/>        .form-grid {<br/>            display: grid;<br/>            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));<br/>            gap: 12px;<br/>            margin-bottom: 15px;<br/>        }<br/>        .btn-submit {<br/>            background-color: #27ae60;<br/>            color: white;<br/>            border: none;<br/>            padding: 10px 20px;<br/>            font-size: 14px;<br/>            font-weight: bold;<br/>            border-radius: 5px;<br/>            cursor: pointer;<br/>            width: 100%;<br/>            transition: background 0.2s;<br/>        }<br/>        .btn-submit:hover {<br/>            background-color: #219150;<br/>        }<br/>        .btn-delete {<br/>            background-color: #e74c3c;<br/>            color: white;<br/>            border: none;<br/>            padding: 6px 10px;<br/>            border-radius: 4px;<br/>            cursor: pointer;<br/>            font-size: 12px;<br/>        }<br/>        .btn-delete:hover {<br/>            background-color: #c0392b;<br/>        }<br/><br/>        .category-title {<br/>            background-color: #2d572c;<br/>            color: white;<br/>            padding: 12px 18px;<br/>            margin-top: 30px;<br/>            border-radius: 6px;<br/>            font-size: 1.15rem;<br/>            font-weight: bold;<br/>        }<br/>        table {<br/>            width: 100%;<br/>            border-collapse: collapse;<br/>            margin-top: 10px;<br/>            margin-bottom: 25px;<br/>        }<br/>        th, td {<br/>            border: 1px solid #e0e0e0;<br/>            padding: 10px 12px;<br/>            text-align: left;<br/>        }<br/>        th {<br/>            background-color: #1f4e78;<br/>            color: white;<br/>            font-weight: 600;<br/>        }<br/>        tr:nth-child(even) {<br/>            background-color: #f8fafc;<br/>        }<br/>        select, input[type=&quot;text&quot;] {<br/>            width: 100%;<br/>            padding: 8px 10px;<br/>            border: 1px solid #ccc;<br/>            border-radius: 5px;<br/>            box-sizing: border-box;<br/>            font-size: 14px;<br/>        }<br/>        select:focus, input[type=&quot;text&quot;]:focus {<br/>            outline: none;<br/>            border-color: #1f4e78;<br/>            box-shadow: 0 0 5px rgba(31,78,120,0.3);<br/>        }<br/>        .status-lunas {<br/>            background-color: #d4edda !important;<br/>            color: #155724 !important;<br/>            font-weight: bold;<br/>        }<br/>        .status-dp {<br/>            background-color: #fff3cd !important;<br/>            color: #856404 !important;<br/>            font-weight: bold;<br/>        }<br/>        .status-belum {<br/>            background-color: #f8d7da !important;<br/>            color: #721c24 !important;<br/>            font-weight: bold;<br/>        }<br/>        @media (max-width: 600px) {<br/>            .container { padding: 12px; }<br/>            table, th, td { font-size: 13px; padding: 6px; }<br/>        }<br/>    &lt;/style&gt;<br/>&lt;/head&gt;<br/>&lt;body&gt;<br/><br/>&lt;div class=&quot;container&quot;&gt;<br/>    &lt;h1&gt;LIST ORDERAN KAOS BLNK SQUAD&lt;/h1&gt;<br/><br/>    &lt;div class=&quot;form-card&quot;&gt;<br/>        &lt;h3&gt;+ Tambah Pemesan Baru&lt;/h3&gt;<br/>        &lt;div class=&quot;form-grid&quot;&gt;<br/>            &lt;div&gt;<br/>                &lt;label&gt;Nama Pemesan:&lt;/label&gt;<br/>                &lt;input type=&quot;text&quot; id=&quot;new-nama&quot; placeholder=&quot;Masukkan nama...&quot; required&gt;<br/>            &lt;/div&gt;<br/>            &lt;div&gt;<br/>                &lt;label&gt;Kategori:&lt;/label&gt;<br/>                &lt;select id=&quot;new-kategori&quot;&gt;<br/>                    &lt;option value=&quot;acara&quot;&gt;Kaos + Acara&lt;/option&gt;<br/>                    &lt;option value=&quot;kaos&quot;&gt;Kaos Saja&lt;/option&gt;<br/>                &lt;/select&gt;<br/>            &lt;/div&gt;<br/>            &lt;div&gt;<br/>                &lt;label&gt;Ukuran Baju:&lt;/label&gt;<br/>                &lt;select id=&quot;new-size&quot;&gt;<br/>                    &lt;option value=&quot;S&quot;&gt;S&lt;/option&gt;<br/>                    &lt;option value=&quot;M&quot;&gt;M&lt;/option&gt;<br/>                    &lt;option value=&quot;L&quot; selected&gt;L&lt;/option&gt;<br/>                    &lt;option value=&quot;XL&quot;&gt;XL&lt;/option&gt;<br/>                    &lt;option value=&quot;XXL&quot;&gt;XXL&lt;/option&gt;<br/>                    &lt;option value=&quot;3XL&quot;&gt;3XL&lt;/option&gt;<br/>                    &lt;option value=&quot;4XL&quot;&gt;4XL&lt;/option&gt;<br/>                    &lt;option value=&quot;5XL&quot;&gt;5XL&lt;/option&gt;<br/>                &lt;/select&gt;<br/>            &lt;/div&gt;<br/>            &lt;div&gt;<br/>                &lt;label&gt;Status Pembayaran:&lt;/label&gt;<br/>                &lt;select id=&quot;new-status&quot;&gt;<br/>                    &lt;option value=&quot;Belum Lunas&quot;&gt;Belum Lunas&lt;/option&gt;<br/>                    &lt;option value=&quot;Masih DP&quot;&gt;Masih DP&lt;/option&gt;<br/>                    &lt;option value=&quot;Lunas&quot;&gt;Lunas&lt;/option&gt;<br/>                &lt;/select&gt;<br/>            &lt;/div&gt;<br/>            &lt;div&gt;<br/>                &lt;label&gt;Keterangan:&lt;/label&gt;<br/>                &lt;input type=&quot;text&quot; id=&quot;new-ket&quot; placeholder=&quot;Catatan tambahan (opsional)&quot;&gt;<br/>            &lt;/div&gt;<br/>        &lt;/div&gt;<br/>        &lt;button class=&quot;btn-submit&quot; onclick=&quot;tambahPemesan()&quot;&gt;Tambah Ke Daftar&lt;/button&gt;<br/>    &lt;/div&gt;<br/><br/>    &lt;div class=&quot;category-title&quot;&gt;1. Kaos + Acara&lt;/div&gt;<br/>    &lt;table&gt;<br/>        &lt;thead&gt;<br/>            &lt;tr&gt;<br/>                &lt;th style=&quot;width: 5%; text-align: center;&quot;&gt;No&lt;/th&gt;<br/>                &lt;th style=&quot;width: 25%;&quot;&gt;Nama Pemesan&lt;/th&gt;<br/>                &lt;th style=&quot;width: 15%; text-align: center;&quot;&gt;Ukuran&lt;/th&gt;<br/>                &lt;th style=&quot;width: 20%;&quot;&gt;Status Pembayaran&lt;/th&gt;<br/>                &lt;th style=&quot;width: 25%;&quot;&gt;Keterangan&lt;/th&gt;<br/>                &lt;th style=&quot;width: 10%; text-align: center;&quot;&gt;Aksi&lt;/th&gt;<br/>            &lt;/tr&gt;<br/>        &lt;/thead&gt;<br/>        &lt;tbody id=&quot;table-acara&quot;&gt;&lt;/tbody&gt;<br/>    &lt;/table&gt;<br/><br/>    &lt;div class=&quot;category-title&quot;&gt;2. Kaos Saja&lt;/div&gt;<br/>    &lt;table&gt;<br/>        &lt;thead&gt;<br/>            &lt;tr&gt;<br/>                &lt;th style=&quot;width: 5%; text-align: center;&quot;&gt;No&lt;/th&gt;<br/>                &lt;th style=&quot;width: 25%;&quot;&gt;Nama Pemesan&lt;/th&gt;<br/>                &lt;th style=&quot;width: 15%; text-align: center;&quot;&gt;Ukuran&lt;/th&gt;<br/>                &lt;th style=&quot;width: 20%;&quot;&gt;Status Pembayaran&lt;/th&gt;<br/>                &lt;th style=&quot;width: 25%;&quot;&gt;Keterangan&lt;/th&gt;<br/>                &lt;th style=&quot;width: 10%; text-align: center;&quot;&gt;Aksi&lt;/th&gt;<br/>            &lt;/tr&gt;<br/>        &lt;/thead&gt;<br/>        &lt;tbody id=&quot;table-kaos&quot;&gt;&lt;/tbody&gt;<br/>    &lt;/table&gt;<br/>&lt;/div&gt;<br/><br/>&lt;script&gt;<br/>    const dataAcara = [<br/>        { nama: &quot;Yeski&quot;, size: &quot;M&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Fahri&quot;, size: &quot;L&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Dok&quot;, size: &quot;XXL&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Bowo&quot;, size: &quot;XL&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Ngoss&quot;, size: &quot;XL&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Sigit&quot;, size: &quot;L&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Samson&quot;, size: &quot;XL&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Bagor&quot;, size: &quot;4XL&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Restu&quot;, size: &quot;L&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Vano&quot;, size: &quot;L&quot;, ket: &quot;kecil&quot; },<br/>        { nama: &quot;Zanu&quot;, size: &quot;XL&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Irfan&quot;, size: &quot;L&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Elang&quot;, size: &quot;L&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Danis&quot;, size: &quot;M&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Adit&quot;, size: &quot;XL&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Zaki&quot;, size: &quot;XXL&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Iwang&quot;, size: &quot;XL&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Suta&quot;, size: &quot;L&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Kiko&quot;, size: &quot;XL&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Nugroho&quot;, size: &quot;L&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Kipkip&quot;, size: &quot;L&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Sahid&quot;, size: &quot;M&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Gustoong&quot;, size: &quot;XL&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Gundul&quot;, size: &quot;L&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Dok&quot;, size: &quot;L&quot;, ket: &quot;&quot; }<br/>    ];<br/><br/>    const dataKaos = [<br/>        { nama: &quot;Kaper&quot;, size: &quot;XXL&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Gusti&quot;, size: &quot;4XL&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Boni&quot;, size: &quot;XL&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Rafif&quot;, size: &quot;XL&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Toks&quot;, size: &quot;L&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Papah Galih&quot;, size: &quot;XXL&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Mamah Yosinta&quot;, size: &quot;XL&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Lutvi&quot;, size: &quot;M&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Arya&quot;, size: &quot;L&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Mendi&quot;, size: &quot;XXL&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Bowo 1&quot;, size: &quot;XL&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Bowo 2&quot;, size: &quot;M&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Pek Mikk&quot;, size: &quot;L&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Elza&quot;, size: &quot;XL&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Ayah Utit 1&quot;, size: &quot;M&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;David Unyil&quot;, size: &quot;L&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Candra&quot;, size: &quot;XL&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Anam&quot;, size: &quot;L&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Sigit 2&quot;, size: &quot;L&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Gundul 2&quot;, size: &quot;XL&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Weng&quot;, size: &quot;XL&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Ayah Utit 2&quot;, size: &quot;XL&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Pak Wan&quot;, size: &quot;XXL&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;PUNGKI&quot;, size: &quot;L&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Mas Gogon&quot;, size: &quot;L&quot;, ket: &quot;&quot; },<br/>        { nama: &quot;Mas Gogos&quot;, size: &quot;S&quot;, ket: &quot;&quot; }<br/>    ];<br/><br/>    const sizeOptions = [&quot;S&quot;, &quot;M&quot;, &quot;L&quot;, &quot;XL&quot;, &quot;XXL&quot;, &quot;3XL&quot;, &quot;4XL&quot;, &quot;5XL&quot;];<br/><br/>    function generateTableRows(dataList, tableId) {<br/>        const tbody = document.getElementById(tableId);<br/>        tbody.innerHTML = &quot;&quot;;<br/><br/>        dataList.forEach((item, index) =&gt; {<br/>            const tr = document.createElement(&quot;tr&quot;);<br/><br/>            // No<br/>            const tdNo = document.createElement(&quot;td&quot;);<br/>            tdNo.textContent = index + 1;<br/>            tdNo.style.textAlign = &quot;center&quot;;<br/>            tr.appendChild(tdNo);<br/><br/>            // Nama Pemesan<br/>            const tdNama = document.createElement(&quot;td&quot;);<br/>            tdNama.textContent = item.nama;<br/>            tr.appendChild(tdNama);<br/><br/>            // Ukuran Baju<br/>            const tdSize = document.createElement(&quot;td&quot;);<br/>            const selectSize = document.createElement(&quot;select&quot;);<br/>            sizeOptions.forEach(opt =&gt; {<br/>                const option = document.createElement(&quot;option&quot;);<br/>                option.value = opt;<br/>                option.textContent = opt;<br/>                if (opt.toUpperCase() === item.size.toUpperCase()) {<br/>                    option.selected = true;<br/>                }<br/>                selectSize.appendChild(option);<br/>            });<br/>            tdSize.appendChild(selectSize);<br/>            tr.appendChild(tdSize);<br/><br/>            // Status Pembayaran<br/>            const tdStatus = document.createElement(&quot;td&quot;);<br/>            const selectStatus = document.createElement(&quot;select&quot;);<br/>            const statusOptions = [&quot;Belum Lunas&quot;, &quot;Masih DP&quot;, &quot;Lunas&quot;];<br/>            statusOptions.forEach(st =&gt; {<br/>                const option = document.createElement(&quot;option&quot;);<br/>                option.value = st;<br/>                option.textContent = st;<br/>                if (st === item.status) option.selected = true;<br/>                selectStatus.appendChild(option);<br/>            });<br/><br/>            function updateStatusColor() {<br/>                selectStatus.className = &quot;&quot;;<br/>                if (selectStatus.value === &quot;Lunas&quot;) selectStatus.classList.add(&quot;status-lunas&quot;);<br/>                else if (selectStatus.value === &quot;Masih DP&quot;) selectStatus.classList.add(&quot;status-dp&quot;);<br/>                else selectStatus.classList.add(&quot;status-belum&quot;);<br/>            }<br/>            selectStatus.addEventListener(&quot;change&quot;, updateStatusColor);<br/>            updateStatusColor();<br/><br/>            tdStatus.appendChild(selectStatus);<br/>            tr.appendChild(tdStatus);<br/><br/>            // Keterangan<br/>            const tdKet = document.createElement(&quot;td&quot;);<br/>            const inputKet = document.createElement(&quot;input&quot;);<br/>            inputKet.type = &quot;text&quot;;<br/>            inputKet.value = item.ket || &quot;&quot;;<br/>            inputKet.placeholder = &quot;Keterangan...&quot;;<br/>            tdKet.appendChild(inputKet);<br/>            tr.appendChild(tdKet);<br/><br/>            // Tombol Hapus<br/>            const tdAksi = document.createElement(&quot;td&quot;);<br/>            tdAksi.style.textAlign = &quot;center&quot;;<br/>            const btnDelete = document.createElement(&quot;button&quot;);<br/>            btnDelete.className = &quot;btn-delete&quot;;<br/>            btnDelete.textContent = &quot;Hapus&quot;;<br/>            btnDelete.onclick = () =&gt; {<br/>                dataList.splice(index, 1);<br/>                renderAll();<br/>            };<br/>            tdAksi.appendChild(btnDelete);<br/>            tr.appendChild(tdAksi);<br/><br/>            tbody.appendChild(tr);<br/>        });<br/>    }<br/><br/>    function renderAll() {<br/>        generateTableRows(dataAcara, &quot;table-acara&quot;);<br/>        generateTableRows(dataKaos, &quot;table-kaos&quot;);<br/>    }<br/><br/>    // Fitur Tambah Pemesan Baru<br/>    function tambahPemesan() {<br/>        const nama = document.getElementById(&quot;new-nama&quot;).value.trim();<br/>        const kategori = document.getElementById(&quot;new-kategori&quot;).value;<br/>        const size = document.getElementById(&quot;new-size&quot;).value;<br/>        const status = document.getElementById(&quot;new-status&quot;).value;<br/>        const ket = document.getElementById(&quot;new-ket&quot;).value.trim();<br/><br/>        if (!nama) {<br/>            alert(&quot;Harap isi nama pemesan terlebih dahulu!&quot;);<br/>            return;<br/>        }<br/><br/>        const newItem = { nama, size, status, ket };<br/><br/>        if (kategori === &quot;acara&quot;) {<br/>            dataAcara.push(newItem);<br/>        } else {<br/>            dataKaos.push(newItem);<br/>        }<br/><br/>        // Reset Form Input<br/>        document.getElementById(&quot;new-nama&quot;).value = &quot;&quot;;<br/>        document.getElementById(&quot;new-ket&quot;).value = &quot;&quot;;<br/><br/>        // Render Ulang Tabel<br/>        renderAll();<br/>    }<br/><br/>    document.addEventListener(&quot;DOMContentLoaded&quot;, renderAll);<br/>&lt;/script&gt;<br/><br/>&lt;/body&gt;<br/>&lt;/html&gt;<br/></span></body>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Orderan Kaos BLNK SQUAD</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 20px; background-color: #f4f6f9; color: #333; }
+        h1 { text-align: center; color: #1f4e78; margin-bottom: 25px; }
+        .container { max-width: 1000px; margin: 0 auto; background: #fff; padding: 25px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        .form-card { background-color: #eef2f5; padding: 20px; border-radius: 8px; margin-bottom: 30px; border: 1px solid #dcdfe3; }
+        .form-card h3 { margin-top: 0; color: #1f4e78; }
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 15px; }
+        .btn-submit { background-color: #27ae60; color: white; border: none; padding: 10px 20px; font-size: 14px; font-weight: bold; border-radius: 5px; cursor: pointer; width: 100%; transition: background 0.2s; }
+        .btn-submit:hover { background-color: #219150; }
+        .btn-delete { background-color: #e74c3c; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; }
+        .btn-delete:hover { background-color: #c0392b; }
+        .category-title { background-color: #2d572c; color: white; padding: 12px 18px; margin-top: 30px; border-radius: 6px; font-size: 1.15rem; font-weight: bold; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; margin-bottom: 25px; }
+        th, td { border: 1px solid #e0e0e0; padding: 10px 12px; text-align: left; }
+        th { background-color: #1f4e78; color: white; font-weight: 600; }
+        tr:nth-child(even) { background-color: #f8fafc; }
+        select, input[type="text"] { width: 100%; padding: 8px 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 14px; }
+        select:focus, input[type="text"]:focus { outline: none; border-color: #1f4e78; box-shadow: 0 0 5px rgba(31,78,120,0.3); }
+        .status-lunas { background-color: #d4edda !important; color: #155724 !important; font-weight: bold; }
+        .status-dp { background-color: #fff3cd !important; color: #856404 !important; font-weight: bold; }
+        .status-belum { background-color: #f8d7da !important; color: #721c24 !important; font-weight: bold; }
+        @media (max-width: 600px) { .container { padding: 12px; } table, th, td { font-size: 13px; padding: 6px; } }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>LIST ORDERAN KAOS BLNK SQUAD</h1>
+
+    <div class="form-card">
+        <h3>+ Tambah Pemesan Baru</h3>
+        <div class="form-grid">
+            <div>
+                <label>Nama Pemesan:</label>
+                <input type="text" id="new-nama" placeholder="Masukkan nama..." required>
+            </div>
+            <div>
+                <label>Kategori:</label>
+                <select id="new-kategori">
+                    <option value="acara">Kaos + Acara</option>
+                    <option value="kaos">Kaos Saja</option>
+                </select>
+            </div>
+            <div>
+                <label>Ukuran Baju:</label>
+                <select id="new-size">
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L" selected>L</option>
+                    <option value="XL">XL</option>
+                    <option value="XXL">XXL</option>
+                    <option value="3XL">3XL</option>
+                    <option value="4XL">4XL</option>
+                    <option value="5XL">5XL</option>
+                </select>
+            </div>
+            <div>
+                <label>Status Pembayaran:</label>
+                <select id="new-status">
+                    <option value="Belum Lunas">Belum Lunas</option>
+                    <option value="Masih DP">Masih DP</option>
+                    <option value="Lunas">Lunas</option>
+                </select>
+            </div>
+            <div>
+                <label>Keterangan:</label>
+                <input type="text" id="new-ket" placeholder="Catatan tambahan (opsional)">
+            </div>
+        </div>
+        <button class="btn-submit" onclick="tambahPemesan()">Tambah Ke Daftar</button>
+    </div>
+
+    <div class="category-title">1. Kaos + Acara</div>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 5%; text-align: center;">No</th>
+                <th style="width: 25%;">Nama Pemesan</th>
+                <th style="width: 15%; text-align: center;">Ukuran</th>
+                <th style="width: 20%;">Status Pembayaran</th>
+                <th style="width: 25%;">Keterangan</th>
+                <th style="width: 10%; text-align: center;">Aksi</th>
+            </tr>
+        </thead>
+        <tbody id="table-acara"></tbody>
+    </table>
+
+    <div class="category-title">2. Kaos Saja</div>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 5%; text-align: center;">No</th>
+                <th style="width: 25%;">Nama Pemesan</th>
+                <th style="width: 15%; text-align: center;">Ukuran</th>
+                <th style="width: 20%;">Status Pembayaran</th>
+                <th style="width: 25%;">Keterangan</th>
+                <th style="width: 10%; text-align: center;">Aksi</th>
+            </tr>
+        </thead>
+        <tbody id="table-kaos"></tbody>
+    </table>
+</div>
+
+<script>
+    const dataAcara = [
+        { nama: "Yeski", size: "M", ket: "" },
+        { nama: "Fahri", size: "L", ket: "" },
+        { nama: "Dok", size: "XXL", ket: "" },
+        { nama: "Bowo", size: "XL", ket: "" },
+        { nama: "Ngoss", size: "XL", ket: "" },
+        { nama: "Sigit", size: "L", ket: "" },
+        { nama: "Samson", size: "XL", ket: "" },
+        { nama: "Bagor", size: "4XL", ket: "" },
+        { nama: "Restu", size: "L", ket: "" },
+        { nama: "Vano", size: "L", ket: "kecil" },
+        { nama: "Zanu", size: "XL", ket: "" },
+        { nama: "Irfan", size: "L", ket: "" },
+        { nama: "Elang", size: "L", ket: "" },
+        { nama: "Danis", size: "M", ket: "" },
+        { nama: "Adit", size: "XL", ket: "" },
+        { nama: "Zaki", size: "XXL", ket: "" },
+        { nama: "Iwang", size: "XL", ket: "" },
+        { nama: "Suta", size: "L", ket: "" },
+        { nama: "Kiko", size: "XL", ket: "" },
+        { nama: "Nugroho", size: "L", ket: "" },
+        { nama: "Kipkip", size: "L", ket: "" },
+        { nama: "Sahid", size: "M", ket: "" },
+        { nama: "Gustoong", size: "XL", ket: "" },
+        { nama: "Gundul", size: "L", ket: "" },
+        { nama: "Dok", size: "L", ket: "" }
+    ];
+
+    const dataKaos = [
+        { nama: "Kaper", size: "XXL", ket: "" },
+        { nama: "Gusti", size: "4XL", ket: "" },
+        { nama: "Boni", size: "XL", ket: "" },
+        { nama: "Rafif", size: "XL", ket: "" },
+        { nama: "Toks", size: "L", ket: "" },
+        { nama: "Papah Galih", size: "XXL", ket: "" },
+        { nama: "Mamah Yosinta", size: "XL", ket: "" },
+        { nama: "Lutvi", size: "M", ket: "" },
+        { nama: "Arya", size: "L", ket: "" },
+        { nama: "Mendi", size: "XXL", ket: "" },
+        { nama: "Bowo 1", size: "XL", ket: "" },
+        { nama: "Bowo 2", size: "M", ket: "" },
+        { nama: "Pek Mikk", size: "L", ket: "" },
+        { nama: "Elza", size: "XL", ket: "" },
+        { nama: "Ayah Utit 1", size: "M", ket: "" },
+        { nama: "David Unyil", size: "L", ket: "" },
+        { nama: "Candra", size: "XL", ket: "" },
+        { nama: "Anam", size: "L", ket: "" },
+        { nama: "Sigit 2", size: "L", ket: "" },
+        { nama: "Gundul 2", size: "XL", ket: "" },
+        { nama: "Weng", size: "XL", ket: "" },
+        { nama: "Ayah Utit 2", size: "XL", ket: "" },
+        { nama: "Pak Wan", size: "XXL", ket: "" },
+        { nama: "PUNGKI", size: "L", ket: "" },
+        { nama: "Mas Gogon", size: "L", ket: "" },
+        { nama: "Mas Gogos", size: "S", ket: "" }
+    ];
+
+    const sizeOptions = ["S", "M", "L", "XL", "XXL", "3XL", "4XL", "5XL"];
+
+    function generateTableRows(dataList, tableId) {
+        const tbody = document.getElementById(tableId);
+        tbody.innerHTML = "";
+
+        dataList.forEach((item, index) => {
+            const tr = document.createElement("tr");
+
+            const tdNo = document.createElement("td");
+            tdNo.textContent = index + 1;
+            tdNo.style.textAlign = "center";
+            tr.appendChild(tdNo);
+
+            const tdNama = document.createElement("td");
+            tdNama.textContent = item.nama;
+            tr.appendChild(tdNama);
+
+            const tdSize = document.createElement("td");
+            const selectSize = document.createElement("select");
+            sizeOptions.forEach(opt => {
+                const option = document.createElement("option");
+                option.value = opt;
+                option.textContent = opt;
+                if (opt.toUpperCase() === item.size.toUpperCase()) {
+                    option.selected = true;
+                }
+                selectSize.appendChild(option);
+            });
+            tdSize.appendChild(selectSize);
+            tr.appendChild(tdSize);
+
+            const tdStatus = document.createElement("td");
+            const selectStatus = document.createElement("select");
+            const statusOptions = ["Belum Lunas", "Masih DP", "Lunas"];
+            statusOptions.forEach(st => {
+                const option = document.createElement("option");
+                option.value = st;
+                option.textContent = st;
+                if (st === item.status) option.selected = true;
+                selectStatus.appendChild(option);
+            });
+
+            function updateStatusColor() {
+                selectStatus.className = "";
+                if (selectStatus.value === "Lunas") selectStatus.classList.add("status-lunas");
+                else if (selectStatus.value === "Masih DP") selectStatus.classList.add("status-dp");
+                else selectStatus.classList.add("status-belum");
+            }
+            selectStatus.addEventListener("change", updateStatusColor);
+            updateStatusColor();
+
+            tdStatus.appendChild(selectStatus);
+            tr.appendChild(tdStatus);
+
+            const tdKet = document.createElement("td");
+            const inputKet = document.createElement("input");
+            inputKet.type = "text";
+            inputKet.value = item.ket || "";
+            inputKet.placeholder = "Keterangan...";
+            tdKet.appendChild(inputKet);
+            tr.appendChild(tdKet);
+
+            const tdAksi = document.createElement("td");
+            tdAksi.style.textAlign = "center";
+            const btnDelete = document.createElement("button");
+            btnDelete.className = "btn-delete";
+            btnDelete.textContent = "Hapus";
+            btnDelete.onclick = () => {
+                dataList.splice(index, 1);
+                renderAll();
+            };
+            tdAksi.appendChild(btnDelete);
+            tr.appendChild(tdAksi);
+
+            tbody.appendChild(tr);
+        });
+    }
+
+    function renderAll() {
+        generateTableRows(dataAcara, "table-acara");
+        generateTableRows(dataKaos, "table-kaos");
+    }
+
+    function tambahPemesan() {
+        const nama = document.getElementById("new-nama").value.trim();
+        const kategori = document.getElementById("new-kategori").value;
+        const size = document.getElementById("new-size").value;
+        const status = document.getElementById("new-status").value;
+        const ket = document.getElementById("new-ket").value.trim();
+
+        if (!nama) {
+            alert("Harap isi nama pemesan terlebih dahulu!");
+            return;
+        }
+
+        const newItem = { nama, size, status, ket };
+
+        if (kategori === "acara") {
+            dataAcara.push(newItem);
+        } else {
+            dataKaos.push(newItem);
+        }
+
+        document.getElementById("new-nama").value = "";
+        document.getElementById("new-ket").value = "";
+
+        renderAll();
+    }
+
+    document.addEventListener("DOMContentLoaded", renderAll);
+</script>
+
+</body>
 </html>
