@@ -6,25 +6,28 @@
     <title>List Orderan Kaos BLNK SQUAD</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 20px; background-color: #f4f6f9; color: #333; }
-        h1 { text-align: center; color: #1f4e78; margin-bottom: 25px; }
+        h1 { text-align: center; color: #1f4e78; margin-bottom: 10px; }
+        .admin-bar { text-align: center; margin-bottom: 20px; }
+        .admin-btn { background-color: #1f4e78; color: white; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .admin-btn.active { background-color: #e74c3c; }
         .container { max-width: 1000px; margin: 0 auto; background: #fff; padding: 25px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
-        .form-card { background-color: #eef2f5; padding: 20px; border-radius: 8px; margin-bottom: 30px; border: 1px solid #dcdfe3; }
+        .form-card { background-color: #eef2f5; padding: 20px; border-radius: 8px; margin-bottom: 30px; border: 1px solid #dcdfe3; display: none; }
+        .form-card.show { display: block; }
         .form-card h3 { margin-top: 0; color: #1f4e78; }
         .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 15px; }
-        .btn-submit { background-color: #27ae60; color: white; border: none; padding: 10px 20px; font-size: 14px; font-weight: bold; border-radius: 5px; cursor: pointer; width: 100%; transition: background 0.2s; }
-        .btn-submit:hover { background-color: #219150; }
-        .btn-delete { background-color: #e74c3c; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; }
-        .btn-delete:hover { background-color: #c0392b; }
+        .btn-submit { background-color: #27ae60; color: white; border: none; padding: 10px 20px; font-size: 14px; font-weight: bold; border-radius: 5px; cursor: pointer; width: 100%; }
+        .btn-delete { background-color: #e74c3c; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; display: none; }
+        .btn-delete.show { display: inline-block; }
         .category-title { background-color: #2d572c; color: white; padding: 12px 18px; margin-top: 30px; border-radius: 6px; font-size: 1.15rem; font-weight: bold; }
         table { width: 100%; border-collapse: collapse; margin-top: 10px; margin-bottom: 25px; }
         th, td { border: 1px solid #e0e0e0; padding: 10px 12px; text-align: left; }
         th { background-color: #1f4e78; color: white; font-weight: 600; }
         tr:nth-child(even) { background-color: #f8fafc; }
         select, input[type="text"] { width: 100%; padding: 8px 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 14px; }
-        select:focus, input[type="text"]:focus { outline: none; border-color: #1f4e78; box-shadow: 0 0 5px rgba(31,78,120,0.3); }
-        .status-lunas { background-color: #d4edda !important; color: #155724 !important; font-weight: bold; }
-        .status-dp { background-color: #fff3cd !important; color: #856404 !important; font-weight: bold; }
-        .status-belum { background-color: #f8d7da !important; color: #721c24 !important; font-weight: bold; }
+        .status-badge { padding: 6px 10px; border-radius: 4px; font-weight: bold; display: inline-block; font-size: 13px; }
+        .status-lunas { background-color: #d4edda; color: #155724; }
+        .status-dp { background-color: #fff3cd; color: #856404; }
+        .status-belum { background-color: #f8d7da; color: #721c24; }
         @media (max-width: 600px) { .container { padding: 12px; } table, th, td { font-size: 13px; padding: 6px; } }
     </style>
 </head>
@@ -32,8 +35,12 @@
 
 <div class="container">
     <h1>LIST ORDERAN KAOS BLNK SQUAD</h1>
+    
+    <div class="admin-bar">
+        <button id="btn-login" class="admin-btn" onclick="toggleAdmin()">🔒 Login Pemilik (Edit)</button>
+    </div>
 
-    <div class="form-card">
+    <div id="form-admin" class="form-card">
         <h3>+ Tambah Pemesan Baru</h3>
         <div class="form-grid">
             <div>
@@ -108,64 +115,96 @@
 </div>
 
 <script>
-    const dataAcara = [
-        { nama: "Yeski", size: "M", ket: "" },
-        { nama: "Fahri", size: "L", ket: "" },
-        { nama: "Dok", size: "XXL", ket: "" },
-        { nama: "Bowo", size: "XL", ket: "" },
-        { nama: "Ngoss", size: "XL", ket: "" },
-        { nama: "Sigit", size: "L", ket: "" },
-        { nama: "Samson", size: "XL", ket: "" },
-        { nama: "Bagor", size: "4XL", ket: "" },
-        { nama: "Restu", size: "L", ket: "" },
-        { nama: "Vano", size: "L", ket: "kecil" },
-        { nama: "Zanu", size: "XL", ket: "" },
-        { nama: "Irfan", size: "L", ket: "" },
-        { nama: "Elang", size: "L", ket: "" },
-        { nama: "Danis", size: "M", ket: "" },
-        { nama: "Adit", size: "XL", ket: "" },
-        { nama: "Zaki", size: "XXL", ket: "" },
-        { nama: "Iwang", size: "XL", ket: "" },
-        { nama: "Suta", size: "L", ket: "" },
-        { nama: "Kiko", size: "XL", ket: "" },
-        { nama: "Nugroho", size: "L", ket: "" },
-        { nama: "Kipkip", size: "L", ket: "" },
-        { nama: "Sahid", size: "M", ket: "" },
-        { nama: "Gustoong", size: "XL", ket: "" },
-        { nama: "Gundul", size: "L", ket: "" },
-        { nama: "Dok", size: "L", ket: "" }
+    // KATA SANDI PEMILIK (Bisa diganti sesuai keinginan)
+    const ADMIN_PASSWORD = "admin123"; 
+    let isAdmin = false;
+
+    const defaultAcara = [
+        { nama: "Yeski", size: "M", status: "Belum Lunas", ket: "" },
+        { nama: "Fahri", size: "L", status: "Belum Lunas", ket: "" },
+        { nama: "Dok", size: "XXL", status: "Belum Lunas", ket: "" },
+        { nama: "Bowo", size: "XL", status: "Belum Lunas", ket: "" },
+        { nama: "Ngoss", size: "XL", status: "Belum Lunas", ket: "" },
+        { nama: "Sigit", size: "L", status: "Belum Lunas", ket: "" },
+        { nama: "Samson", size: "XL", status: "Belum Lunas", ket: "" },
+        { nama: "Bagor", size: "4XL", status: "Belum Lunas", ket: "" },
+        { nama: "Restu", size: "L", status: "Belum Lunas", ket: "" },
+        { nama: "Vano", size: "L", status: "Belum Lunas", ket: "kecil" },
+        { nama: "Zanu", size: "XL", status: "Belum Lunas", ket: "" },
+        { nama: "Irfan", size: "L", status: "Belum Lunas", ket: "" },
+        { nama: "Elang", size: "L", status: "Belum Lunas", ket: "" },
+        { nama: "Danis", size: "M", status: "Belum Lunas", ket: "" },
+        { nama: "Adit", size: "XL", status: "Belum Lunas", ket: "" },
+        { nama: "Zaki", size: "XXL", status: "Belum Lunas", ket: "" },
+        { nama: "Iwang", size: "XL", status: "Belum Lunas", ket: "" },
+        { nama: "Suta", size: "L", status: "Belum Lunas", ket: "" },
+        { nama: "Kiko", size: "XL", status: "Belum Lunas", ket: "" },
+        { nama: "Nugroho", size: "L", status: "Belum Lunas", ket: "" },
+        { nama: "Kipkip", size: "L", status: "Belum Lunas", ket: "" },
+        { nama: "Sahid", size: "M", status: "Belum Lunas", ket: "" },
+        { nama: "Gustoong", size: "XL", status: "Belum Lunas", ket: "" },
+        { nama: "Gundul", size: "L", status: "Belum Lunas", ket: "" },
+        { nama: "Dok", size: "L", status: "Belum Lunas", ket: "" }
     ];
 
-    const dataKaos = [
-        { nama: "Kaper", size: "XXL", ket: "" },
-        { nama: "Gusti", size: "4XL", ket: "" },
-        { nama: "Boni", size: "XL", ket: "" },
-        { nama: "Rafif", size: "XL", ket: "" },
-        { nama: "Toks", size: "L", ket: "" },
-        { nama: "Papah Galih", size: "XXL", ket: "" },
-        { nama: "Mamah Yosinta", size: "XL", ket: "" },
-        { nama: "Lutvi", size: "M", ket: "" },
-        { nama: "Arya", size: "L", ket: "" },
-        { nama: "Mendi", size: "XXL", ket: "" },
-        { nama: "Bowo 1", size: "XL", ket: "" },
-        { nama: "Bowo 2", size: "M", ket: "" },
-        { nama: "Pek Mikk", size: "L", ket: "" },
-        { nama: "Elza", size: "XL", ket: "" },
-        { nama: "Ayah Utit 1", size: "M", ket: "" },
-        { nama: "David Unyil", size: "L", ket: "" },
-        { nama: "Candra", size: "XL", ket: "" },
-        { nama: "Anam", size: "L", ket: "" },
-        { nama: "Sigit 2", size: "L", ket: "" },
-        { nama: "Gundul 2", size: "XL", ket: "" },
-        { nama: "Weng", size: "XL", ket: "" },
-        { nama: "Ayah Utit 2", size: "XL", ket: "" },
-        { nama: "Pak Wan", size: "XXL", ket: "" },
-        { nama: "PUNGKI", size: "L", ket: "" },
-        { nama: "Mas Gogon", size: "L", ket: "" },
-        { nama: "Mas Gogos", size: "S", ket: "" }
+    const defaultKaos = [
+        { nama: "Kaper", size: "XXL", status: "Belum Lunas", ket: "" },
+        { nama: "Gusti", size: "4XL", status: "Belum Lunas", ket: "" },
+        { nama: "Boni", size: "XL", status: "Belum Lunas", ket: "" },
+        { nama: "Rafif", size: "XL", status: "Belum Lunas", ket: "" },
+        { nama: "Toks", size: "L", status: "Belum Lunas", ket: "" },
+        { nama: "Papah Galih", size: "XXL", status: "Belum Lunas", ket: "" },
+        { nama: "Mamah Yosinta", size: "XL", status: "Belum Lunas", ket: "" },
+        { nama: "Lutvi", size: "M", status: "Belum Lunas", ket: "" },
+        { nama: "Arya", size: "L", status: "Belum Lunas", ket: "" },
+        { nama: "Mendi", size: "XXL", status: "Belum Lunas", ket: "" },
+        { nama: "Bowo 1", size: "XL", status: "Belum Lunas", ket: "" },
+        { nama: "Bowo 2", size: "M", status: "Belum Lunas", ket: "" },
+        { nama: "Pek Mikk", size: "L", status: "Belum Lunas", ket: "" },
+        { nama: "Elza", size: "XL", status: "Belum Lunas", ket: "" },
+        { nama: "Ayah Utit 1", size: "M", status: "Belum Lunas", ket: "" },
+        { nama: "David Unyil", size: "L", status: "Belum Lunas", ket: "" },
+        { nama: "Candra", size: "XL", status: "Belum Lunas", ket: "" },
+        { nama: "Anam", size: "L", status: "Belum Lunas", ket: "" },
+        { nama: "Sigit 2", size: "L", status: "Belum Lunas", ket: "" },
+        { nama: "Gundul 2", size: "XL", status: "Belum Lunas", ket: "" },
+        { nama: "Weng", size: "XL", status: "Belum Lunas", ket: "" },
+        { nama: "Ayah Utit 2", size: "XL", status: "Belum Lunas", ket: "" },
+        { nama: "Pak Wan", size: "XXL", status: "Belum Lunas", ket: "" },
+        { nama: "PUNGKI", size: "L", status: "Belum Lunas", ket: "" },
+        { nama: "Mas Gogon", size: "L", status: "Belum Lunas", ket: "" },
+        { nama: "Mas Gogos", size: "S", status: "Belum Lunas", ket: "" }
     ];
 
+    let dataAcara = JSON.parse(localStorage.getItem('blnk_dataAcara')) || defaultAcara;
+    let dataKaos = JSON.parse(localStorage.getItem('blnk_dataKaos')) || defaultKaos;
     const sizeOptions = ["S", "M", "L", "XL", "XXL", "3XL", "4XL", "5XL"];
+
+    function saveData() {
+        localStorage.setItem('blnk_dataAcara', JSON.stringify(dataAcara));
+        localStorage.setItem('blnk_dataKaos', JSON.stringify(dataKaos));
+    }
+
+    function toggleAdmin() {
+        if (isAdmin) {
+            isAdmin = false;
+            document.getElementById("btn-login").textContent = "🔒 Login Pemilik (Edit)";
+            document.getElementById("btn-login").classList.remove("active");
+            document.getElementById("form-admin").classList.remove("show");
+            renderAll();
+        } else {
+            const pass = prompt("Masukkan kata sandi pemilik:");
+            if (pass === ADMIN_PASSWORD) {
+                isAdmin = true;
+                document.getElementById("btn-login").textContent = "🔓 Keluar Mode Edit";
+                document.getElementById("btn-login").classList.add("active");
+                document.getElementById("form-admin").classList.add("show");
+                renderAll();
+            } else if (pass !== null) {
+                alert("Kata sandi salah!");
+            }
+        }
+    }
 
     function generateTableRows(dataList, tableId) {
         const tbody = document.getElementById(tableId);
@@ -174,70 +213,102 @@
         dataList.forEach((item, index) => {
             const tr = document.createElement("tr");
 
+            // No
             const tdNo = document.createElement("td");
             tdNo.textContent = index + 1;
             tdNo.style.textAlign = "center";
             tr.appendChild(tdNo);
 
+            // Nama
             const tdNama = document.createElement("td");
             tdNama.textContent = item.nama;
             tr.appendChild(tdNama);
 
+            // Ukuran
             const tdSize = document.createElement("td");
-            const selectSize = document.createElement("select");
-            sizeOptions.forEach(opt => {
-                const option = document.createElement("option");
-                option.value = opt;
-                option.textContent = opt;
-                if (opt.toUpperCase() === item.size.toUpperCase()) {
-                    option.selected = true;
-                }
-                selectSize.appendChild(option);
-            });
-            tdSize.appendChild(selectSize);
+            if (isAdmin) {
+                const selectSize = document.createElement("select");
+                sizeOptions.forEach(opt => {
+                    const option = document.createElement("option");
+                    option.value = opt;
+                    option.textContent = opt;
+                    if (opt.toUpperCase() === (item.size || "").toUpperCase()) option.selected = true;
+                    selectSize.appendChild(option);
+                });
+                selectSize.addEventListener("change", () => {
+                    item.size = selectSize.value;
+                    saveData();
+                });
+                tdSize.appendChild(selectSize);
+            } else {
+                tdSize.textContent = item.size;
+                tdSize.style.textAlign = "center";
+            }
             tr.appendChild(tdSize);
 
+            // Status Pembayaran
             const tdStatus = document.createElement("td");
-            const selectStatus = document.createElement("select");
-            const statusOptions = ["Belum Lunas", "Masih DP", "Lunas"];
-            statusOptions.forEach(st => {
-                const option = document.createElement("option");
-                option.value = st;
-                option.textContent = st;
-                if (st === item.status) option.selected = true;
-                selectStatus.appendChild(option);
-            });
-
-            function updateStatusColor() {
-                selectStatus.className = "";
-                if (selectStatus.value === "Lunas") selectStatus.classList.add("status-lunas");
-                else if (selectStatus.value === "Masih DP") selectStatus.classList.add("status-dp");
-                else selectStatus.classList.add("status-belum");
+            if (isAdmin) {
+                const selectStatus = document.createElement("select");
+                const statusOptions = ["Belum Lunas", "Masih DP", "Lunas"];
+                statusOptions.forEach(st => {
+                    const option = document.createElement("option");
+                    option.value = st;
+                    option.textContent = st;
+                    if (st === item.status) option.selected = true;
+                    selectStatus.appendChild(option);
+                });
+                selectStatus.addEventListener("change", () => {
+                    item.status = selectStatus.value;
+                    saveData();
+                });
+                tdStatus.appendChild(selectStatus);
+            } else {
+                const badge = document.createElement("span");
+                badge.textContent = item.status;
+                badge.className = "status-badge ";
+                if (item.status === "Lunas") badge.className += "status-lunas";
+                else if (item.status === "Masih DP") badge.className += "status-dp";
+                else badge.className += "status-belum";
+                tdStatus.appendChild(badge);
             }
-            selectStatus.addEventListener("change", updateStatusColor);
-            updateStatusColor();
-
-            tdStatus.appendChild(selectStatus);
             tr.appendChild(tdStatus);
 
+            // Keterangan
             const tdKet = document.createElement("td");
-            const inputKet = document.createElement("input");
-            inputKet.type = "text";
-            inputKet.value = item.ket || "";
-            inputKet.placeholder = "Keterangan...";
-            tdKet.appendChild(inputKet);
+            if (isAdmin) {
+                const inputKet = document.createElement("input");
+                inputKet.type = "text";
+                inputKet.value = item.ket || "";
+                inputKet.placeholder = "Keterangan...";
+                inputKet.addEventListener("input", () => {
+                    item.ket = inputKet.value;
+                    saveData();
+                });
+                tdKet.appendChild(inputKet);
+            } else {
+                tdKet.textContent = item.ket || "-";
+            }
             tr.appendChild(tdKet);
 
+            // Aksi (Hapus)
             const tdAksi = document.createElement("td");
             tdAksi.style.textAlign = "center";
-            const btnDelete = document.createElement("button");
-            btnDelete.className = "btn-delete";
-            btnDelete.textContent = "Hapus";
-            btnDelete.onclick = () => {
-                dataList.splice(index, 1);
-                renderAll();
-            };
-            tdAksi.appendChild(btnDelete);
+            if (isAdmin) {
+                const btnDelete = document.createElement("button");
+                btnDelete.className = "btn-delete show";
+                btnDelete.textContent = "Hapus";
+                btnDelete.onclick = () => {
+                    dataList.splice(index, 1);
+                    saveData();
+                    renderAll();
+                };
+                tdAksi.appendChild(btnDelete);
+            } else {
+                tdAksi.textContent = "🔒 Locked";
+                tdAksi.style.fontSize = "12px";
+                tdAksi.style.color = "#888";
+            }
             tr.appendChild(tdAksi);
 
             tbody.appendChild(tr);
@@ -250,6 +321,7 @@
     }
 
     function tambahPemesan() {
+        if (!isAdmin) return;
         const nama = document.getElementById("new-nama").value.trim();
         const kategori = document.getElementById("new-kategori").value;
         const size = document.getElementById("new-size").value;
@@ -272,6 +344,7 @@
         document.getElementById("new-nama").value = "";
         document.getElementById("new-ket").value = "";
 
+        saveData();
         renderAll();
     }
 
