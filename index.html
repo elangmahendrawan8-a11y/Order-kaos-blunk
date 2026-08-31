@@ -16,8 +16,7 @@
         .form-card h3 { margin-top: 0; color: #1f4e78; }
         .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 15px; }
         .btn-submit { background-color: #27ae60; color: white; border: none; padding: 10px 20px; font-size: 14px; font-weight: bold; border-radius: 5px; cursor: pointer; width: 100%; }
-        .btn-delete { background-color: #e74c3c; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; display: none; }
-        .btn-delete.show { display: inline-block; }
+        .btn-delete { background-color: #e74c3c; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; }
         .category-title { background-color: #2d572c; color: white; padding: 12px 18px; margin-top: 30px; border-radius: 6px; font-size: 1.15rem; font-weight: bold; }
         table { width: 100%; border-collapse: collapse; margin-top: 10px; margin-bottom: 25px; }
         th, td { border: 1px solid #e0e0e0; padding: 10px 12px; text-align: left; }
@@ -30,6 +29,10 @@
         .status-belum { background-color: #f8d7da; color: #721c24; }
         @media (max-width: 600px) { .container { padding: 12px; } table, th, td { font-size: 13px; padding: 6px; } }
     </style>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 </head>
 <body>
 
@@ -115,75 +118,24 @@
 </div>
 
 <script>
-    // KATA SANDI PEMILIK (Bisa diganti sesuai keinginan)
+    // GANTI TULISAN DI BAWAH INI DENGAN KODE KONFIGURASI FIREBASE ANDA
+    const firebaseConfig = {
+      apiKey: "AIzaSyD4tBWUZ0VNlpmqqXsxdi6hfcUBOm4wfjw",
+  authDomain: "blnk2026.firebaseapp.com",
+  databaseURL: "https://blnk2026-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "blnk2026",
+  storageBucket: "blnk2026.firebasestorage.app",
+  messagingSenderId: "597849777630",
+  appId: "1:597849777630:web:10d53b9ea08576fef5a94f",
+  measurementId: "G-BHWPN2NF0S"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
     const ADMIN_PASSWORD = "elang2026"; 
     let isAdmin = false;
-
-    const defaultAcara = [
-        { nama: "Yeski", size: "M", status: "Belum Lunas", ket: "" },
-        { nama: "Fahri", size: "L", status: "Belum Lunas", ket: "" },
-        { nama: "Dok", size: "XXL", status: "Belum Lunas", ket: "" },
-        { nama: "Bowo", size: "XL", status: "Belum Lunas", ket: "" },
-        { nama: "Ngoss", size: "XL", status: "Belum Lunas", ket: "" },
-        { nama: "Sigit", size: "L", status: "Belum Lunas", ket: "" },
-        { nama: "Samson", size: "XL", status: "Belum Lunas", ket: "" },
-        { nama: "Bagor", size: "4XL", status: "Belum Lunas", ket: "" },
-        { nama: "Restu", size: "L", status: "Belum Lunas", ket: "" },
-        { nama: "Vano", size: "L", status: "Belum Lunas", ket: "kecil" },
-        { nama: "Zanu", size: "XL", status: "Belum Lunas", ket: "" },
-        { nama: "Irfan", size: "L", status: "Belum Lunas", ket: "" },
-        { nama: "Elang", size: "L", status: "Belum Lunas", ket: "" },
-        { nama: "Danis", size: "M", status: "Belum Lunas", ket: "" },
-        { nama: "Adit", size: "XL", status: "Belum Lunas", ket: "" },
-        { nama: "Zaki", size: "XXL", status: "Belum Lunas", ket: "" },
-        { nama: "Iwang", size: "XL", status: "Belum Lunas", ket: "" },
-        { nama: "Suta", size: "L", status: "Belum Lunas", ket: "" },
-        { nama: "Kiko", size: "XL", status: "Belum Lunas", ket: "" },
-        { nama: "Nugroho", size: "L", status: "Belum Lunas", ket: "" },
-        { nama: "Kipkip", size: "L", status: "Belum Lunas", ket: "" },
-        { nama: "Sahid", size: "M", status: "Belum Lunas", ket: "" },
-        { nama: "Gustoong", size: "XL", status: "Belum Lunas", ket: "" },
-        { nama: "Gundul", size: "L", status: "Belum Lunas", ket: "" },
-        { nama: "Dok", size: "L", status: "Belum Lunas", ket: "" }
-    ];
-
-    const defaultKaos = [
-        { nama: "Kaper", size: "XXL", status: "Belum Lunas", ket: "" },
-        { nama: "Gusti", size: "4XL", status: "Belum Lunas", ket: "" },
-        { nama: "Boni", size: "XL", status: "Belum Lunas", ket: "" },
-        { nama: "Rafif", size: "XL", status: "Belum Lunas", ket: "" },
-        { nama: "Toks", size: "L", status: "Belum Lunas", ket: "" },
-        { nama: "Papah Galih", size: "XXL", status: "Belum Lunas", ket: "" },
-        { nama: "Mamah Yosinta", size: "XL", status: "Belum Lunas", ket: "" },
-        { nama: "Lutvi", size: "M", status: "Belum Lunas", ket: "" },
-        { nama: "Arya", size: "L", status: "Belum Lunas", ket: "" },
-        { nama: "Mendi", size: "XXL", status: "Belum Lunas", ket: "" },
-        { nama: "Bowo 1", size: "XL", status: "Belum Lunas", ket: "" },
-        { nama: "Bowo 2", size: "M", status: "Belum Lunas", ket: "" },
-        { nama: "Pek Mikk", size: "L", status: "Belum Lunas", ket: "" },
-        { nama: "Elza", size: "XL", status: "Belum Lunas", ket: "" },
-        { nama: "Ayah Utit 1", size: "M", status: "Belum Lunas", ket: "" },
-        { nama: "David Unyil", size: "L", status: "Belum Lunas", ket: "" },
-        { nama: "Candra", size: "XL", status: "Belum Lunas", ket: "" },
-        { nama: "Anam", size: "L", status: "Belum Lunas", ket: "" },
-        { nama: "Sigit 2", size: "L", status: "Belum Lunas", ket: "" },
-        { nama: "Gundul 2", size: "XL", status: "Belum Lunas", ket: "" },
-        { nama: "Weng", size: "XL", status: "Belum Lunas", ket: "" },
-        { nama: "Ayah Utit 2", size: "XL", status: "Belum Lunas", ket: "" },
-        { nama: "Pak Wan", size: "XXL", status: "Belum Lunas", ket: "" },
-        { nama: "PUNGKI", size: "L", status: "Belum Lunas", ket: "" },
-        { nama: "Mas Gogon", size: "L", status: "Belum Lunas", ket: "" },
-        { nama: "Mas Gogos", size: "S", status: "Belum Lunas", ket: "" }
-    ];
-
-    let dataAcara = JSON.parse(localStorage.getItem('blnk_dataAcara')) || defaultAcara;
-    let dataKaos = JSON.parse(localStorage.getItem('blnk_dataKaos')) || defaultKaos;
     const sizeOptions = ["S", "M", "L", "XL", "XXL", "3XL", "4XL", "5XL"];
-
-    function saveData() {
-        localStorage.setItem('blnk_dataAcara', JSON.stringify(dataAcara));
-        localStorage.setItem('blnk_dataKaos', JSON.stringify(dataKaos));
-    }
 
     function toggleAdmin() {
         if (isAdmin) {
@@ -191,7 +143,7 @@
             document.getElementById("btn-login").textContent = "🔒 Login Pemilik (Edit)";
             document.getElementById("btn-login").classList.remove("active");
             document.getElementById("form-admin").classList.remove("show");
-            renderAll();
+            fetchRealtimeData();
         } else {
             const pass = prompt("Masukkan kata sandi pemilik:");
             if (pass === ADMIN_PASSWORD) {
@@ -199,32 +151,33 @@
                 document.getElementById("btn-login").textContent = "🔓 Keluar Mode Edit";
                 document.getElementById("btn-login").classList.add("active");
                 document.getElementById("form-admin").classList.add("show");
-                renderAll();
+                fetchRealtimeData();
             } else if (pass !== null) {
                 alert("Kata sandi salah!");
             }
         }
     }
 
-    function generateTableRows(dataList, tableId) {
+    function renderTable(dataObj, tableId, categoryKey) {
         const tbody = document.getElementById(tableId);
         tbody.innerHTML = "";
 
-        dataList.forEach((item, index) => {
+        if (!dataObj) return;
+
+        let index = 1;
+        Object.keys(dataObj).forEach(id => {
+            const item = dataObj[id];
             const tr = document.createElement("tr");
 
-            // No
             const tdNo = document.createElement("td");
-            tdNo.textContent = index + 1;
+            tdNo.textContent = index++;
             tdNo.style.textAlign = "center";
             tr.appendChild(tdNo);
 
-            // Nama
             const tdNama = document.createElement("td");
             tdNama.textContent = item.nama;
             tr.appendChild(tdNama);
 
-            // Ukuran
             const tdSize = document.createElement("td");
             if (isAdmin) {
                 const selectSize = document.createElement("select");
@@ -236,8 +189,7 @@
                     selectSize.appendChild(option);
                 });
                 selectSize.addEventListener("change", () => {
-                    item.size = selectSize.value;
-                    saveData();
+                    db.ref(`orders/${categoryKey}/${id}/size`).set(selectSize.value);
                 });
                 tdSize.appendChild(selectSize);
             } else {
@@ -246,7 +198,6 @@
             }
             tr.appendChild(tdSize);
 
-            // Status Pembayaran
             const tdStatus = document.createElement("td");
             if (isAdmin) {
                 const selectStatus = document.createElement("select");
@@ -259,8 +210,7 @@
                     selectStatus.appendChild(option);
                 });
                 selectStatus.addEventListener("change", () => {
-                    item.status = selectStatus.value;
-                    saveData();
+                    db.ref(`orders/${categoryKey}/${id}/status`).set(selectStatus.value);
                 });
                 tdStatus.appendChild(selectStatus);
             } else {
@@ -274,16 +224,14 @@
             }
             tr.appendChild(tdStatus);
 
-            // Keterangan
             const tdKet = document.createElement("td");
             if (isAdmin) {
                 const inputKet = document.createElement("input");
                 inputKet.type = "text";
                 inputKet.value = item.ket || "";
                 inputKet.placeholder = "Keterangan...";
-                inputKet.addEventListener("input", () => {
-                    item.ket = inputKet.value;
-                    saveData();
+                inputKet.addEventListener("change", () => {
+                    db.ref(`orders/${categoryKey}/${id}/ket`).set(inputKet.value);
                 });
                 tdKet.appendChild(inputKet);
             } else {
@@ -291,17 +239,16 @@
             }
             tr.appendChild(tdKet);
 
-            // Aksi (Hapus)
             const tdAksi = document.createElement("td");
             tdAksi.style.textAlign = "center";
             if (isAdmin) {
                 const btnDelete = document.createElement("button");
-                btnDelete.className = "btn-delete show";
+                btnDelete.className = "btn-delete";
                 btnDelete.textContent = "Hapus";
                 btnDelete.onclick = () => {
-                    dataList.splice(index, 1);
-                    saveData();
-                    renderAll();
+                    if (confirm(`Hapus ${item.nama}?`)) {
+                        db.ref(`orders/${categoryKey}/${id}`).remove();
+                    }
                 };
                 tdAksi.appendChild(btnDelete);
             } else {
@@ -315,9 +262,12 @@
         });
     }
 
-    function renderAll() {
-        generateTableRows(dataAcara, "table-acara");
-        generateTableRows(dataKaos, "table-kaos");
+    function fetchRealtimeData() {
+        db.ref('orders').on('value', (snapshot) => {
+            const data = snapshot.val() || {};
+            renderTable(data.acara, "table-acara", "acara");
+            renderTable(data.kaos, "table-kaos", "kaos");
+        });
     }
 
     function tambahPemesan() {
@@ -334,21 +284,13 @@
         }
 
         const newItem = { nama, size, status, ket };
-
-        if (kategori === "acara") {
-            dataAcara.push(newItem);
-        } else {
-            dataKaos.push(newItem);
-        }
+        db.ref(`orders/${kategori}`).push(newItem);
 
         document.getElementById("new-nama").value = "";
         document.getElementById("new-ket").value = "";
-
-        saveData();
-        renderAll();
     }
 
-    document.addEventListener("DOMContentLoaded", renderAll);
+    document.addEventListener("DOMContentLoaded", fetchRealtimeData);
 </script>
 
 </body>
