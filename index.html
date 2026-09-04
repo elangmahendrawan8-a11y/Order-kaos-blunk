@@ -22,11 +22,12 @@
         .category-title { background-color: #2d572c; color: white; padding: 12px 18px; margin-top: 30px; border-radius: 6px; font-size: 1.15rem; font-weight: bold; }
         
         .rekap-card { background: #fff; border: 2px solid #1f4e78; border-radius: 8px; padding: 15px; margin-bottom: 25px; }
-        .rekap-title { font-weight: bold; font-size: 1.1rem; color: #1f4e78; margin-bottom: 10px; border-bottom: 1px solid #ddd; padding-bottom: 5px; }
+        .rekap-title { font-weight: bold; font-size: 1.1rem; color: #1f4e78; margin-bottom: 12px; border-bottom: 1px solid #ddd; padding-bottom: 5px; }
         .rekap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
-        .rekap-box { background: #f8fafc; padding: 10px; border-radius: 6px; border: 1px solid #e2e8f0; }
+        .rekap-box { background: #f8fafc; padding: 12px; border-radius: 6px; border: 1px solid #e2e8f0; }
         .rekap-box h4 { margin: 0 0 5px 0; color: #475569; font-size: 0.85rem; }
-        .rekap-number { font-size: 1.15rem; font-weight: bold; color: #0f172a; }
+        .rekap-number { font-size: 1.2rem; font-weight: bold; color: #0f172a; }
+        .rekap-money { font-size: 0.95rem; font-weight: bold; margin-top: 4px; }
         .rekap-sizes { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 5px; }
         .size-tag { background: #e2e8f0; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
         
@@ -48,59 +49,7 @@
 <body>
 
 <div class="container">
-    <!-- POSISI LOGO DI SINI (Di atas Judul Utama) -->
-    <div class="logo-container">
-        <img src="<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List Orderan Kaos BLNK SQUAD</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 20px; background-color: #f4f6f9; color: #333; }
-        h1 { text-align: center; color: #1f4e78; margin-bottom: 10px; }
-        .logo-container { text-align: center; margin-bottom: 10px; }
-        .logo-img { max-width: 120px; height: auto; border-radius: 8px; }
-        .admin-bar { text-align: center; margin-bottom: 20px; }
-        .admin-btn { background-color: #1f4e78; color: white; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer; font-weight: bold; }
-        .admin-btn.active { background-color: #e74c3c; }
-        .container { max-width: 1000px; margin: 0 auto; background: #fff; padding: 25px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
-        .form-card { background-color: #eef2f5; padding: 20px; border-radius: 8px; margin-bottom: 30px; border: 1px solid #dcdfe3; display: none; }
-        .form-card.show { display: block; }
-        .form-card h3 { margin-top: 0; color: #1f4e78; }
-        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 15px; }
-        .btn-submit { background-color: #27ae60; color: white; border: none; padding: 10px 20px; font-size: 14px; font-weight: bold; border-radius: 5px; cursor: pointer; width: 100%; }
-        .btn-delete { background-color: #e74c3c; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; }
-        .category-title { background-color: #2d572c; color: white; padding: 12px 18px; margin-top: 30px; border-radius: 6px; font-size: 1.15rem; font-weight: bold; }
-        
-        .rekap-card { background: #fff; border: 2px solid #1f4e78; border-radius: 8px; padding: 15px; margin-bottom: 25px; }
-        .rekap-title { font-weight: bold; font-size: 1.1rem; color: #1f4e78; margin-bottom: 10px; border-bottom: 1px solid #ddd; padding-bottom: 5px; }
-        .rekap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
-        .rekap-box { background: #f8fafc; padding: 10px; border-radius: 6px; border: 1px solid #e2e8f0; }
-        .rekap-box h4 { margin: 0 0 5px 0; color: #475569; font-size: 0.85rem; }
-        .rekap-number { font-size: 1.15rem; font-weight: bold; color: #0f172a; }
-        .rekap-sizes { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 5px; }
-        .size-tag { background: #e2e8f0; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
-        
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; margin-bottom: 25px; }
-        th, td { border: 1px solid #e0e0e0; padding: 10px 12px; text-align: left; }
-        th { background-color: #1f4e78; color: white; font-weight: 600; }
-        tr:nth-child(even) { background-color: #f8fafc; }
-        select, input[type="text"] { width: 100%; padding: 8px 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 14px; }
-        .status-badge { padding: 6px 10px; border-radius: 4px; font-weight: bold; display: inline-block; font-size: 13px; }
-        .status-lunas { background-color: #d4edda; color: #155724; }
-        .status-dp { background-color: #fff3cd; color: #856404; }
-        .status-belum { background-color: #f8d7da; color: #721c24; }
-        @media (max-width: 600px) { .container { padding: 12px; } table, th, td { font-size: 13px; padding: 6px; } }
-    </style>
-
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
-</head>
-<body>
-
-<div class="container">
-    <!-- POSISI LOGO DI SINI (Di atas Judul Utama) -->
+    <!-- POSISI LOGO -->
     <div class="logo-container">
         <img src="URL_LINK_GAMBAR_LOGO_ANDA" alt="Logo BLNK SQUAD" class="logo-img">
     </div>
@@ -112,19 +61,38 @@
     </div>
 
     <div class="rekap-card">
-        <div class="rekap-title">📊 Rekapan & Keuangan Otomatis</div>
+        <div class="rekap-title">📊 Rekapan Pembayaran & Keuangan Otomatis</div>
+        
+        <!-- BARIS 1: REKAPAN TIPE PEMBAYARAN & UANG MASUK TIEP TIPE -->
+        <div class="rekap-grid" style="margin-bottom: 12px;">
+            <div class="rekap-box" style="border-left: 4px solid #16a34a; background-color: #f0fdf4;">
+                <h4 style="color: #166534;">✅ Sudah Lunas (@100k)</h4>
+                <div class="rekap-number" style="color: #166534;" id="count-lunas">0 Orang</div>
+                <div class="rekap-money" style="color: #15803d;" id="uang-lunas">Rp 0</div>
+            </div>
+            
+            <div class="rekap-box" style="border-left: 4px solid #d97706; background-color: #fffbeb;">
+                <h4 style="color: #92400e;">⏳ Masih DP (@50k)</h4>
+                <div class="rekap-number" style="color: #92400e;" id="count-dp">0 Orang</div>
+                <div class="rekap-money" style="color: #b45309;" id="uang-dp">Rp 0</div>
+            </div>
+            
+            <div class="rekap-box" style="border-left: 4px solid #dc2626; background-color: #fef2f2;">
+                <h4 style="color: #991b1b;">❌ Belum Bayar</h4>
+                <div class="rekap-number" style="color: #991b1b;" id="count-belum">0 Orang</div>
+                <div class="rekap-money" style="color: #dc2626;" id="uang-kurang">Kurang: Rp 0</div>
+            </div>
+        </div>
+
+        <!-- BARIS 2: SUMMARY KEUANGAN TOTAL -->
         <div class="rekap-grid">
             <div class="rekap-box">
                 <h4>Total Pemesan</h4>
                 <div class="rekap-number" id="total-pemesan">0 Orang</div>
-                <div style="font-size: 0.75rem; color: #64748b; margin-top: 4px;" id="stat-pembayaran">
-                    0 Lunas | 0 DP | 0 Belum
-                </div>
             </div>
             <div class="rekap-box">
-                <h4>Total Uang Masuk</h4>
-                <div class="rekap-number" style="color: #16a34a;" id="uang-masuk">Rp 0</div>
-                <div style="font-size: 0.75rem; color: #dc2626; margin-top: 4px;" id="sisa-piutang">Belum Lunas: Rp 0</div>
+                <h4>Total Cash Masuk</h4>
+                <div class="rekap-number" style="color: #16a34a;" id="uang-masuk-total">Rp 0</div>
             </div>
             <div class="rekap-box">
                 <h4>Estimasi Omset (@100k)</h4>
@@ -135,11 +103,12 @@
                 <div class="rekap-number" style="color: #dc2626;" id="biaya-vendor">Rp 0</div>
             </div>
             <div class="rekap-box">
-                <h4>Proyeksi Untung Bersih (@35k)</h4>
+                <h4>Proyeksi Untung (@35k)</h4>
                 <div class="rekap-number" style="color: #16a34a;" id="untung-bersih">Rp 0</div>
             </div>
         </div>
-        <div style="margin-top: 12px;">
+
+        <div style="margin-top: 15px;">
             <h4 style="margin: 0 0 5px 0; color: #475569; font-size: 0.85rem;">Rincian Ukuran Kaos:</h4>
             <div class="rekap-sizes" id="rincian-ukuran"></div>
         </div>
@@ -428,20 +397,29 @@
         const HARGA_VENDOR = 65000;
         const HARGA_UNTUNG = 35000;
 
-        // Hitung Keuangan Riil berdasarkan status pembayaran
-        const uangMasuk = (countLunas * HARGA_JUAL) + (countDP * NOMINAL_DP);
+        // Hitung Nominal Keuangan Spesifik
+        const totalUangLunas = countLunas * HARGA_JUAL;  // Misal: 4 orang x 100rb = 400rb
+        const totalUangDP = countDP * NOMINAL_DP;       // Misal: 4 orang x 50rb = 200rb
+        const totalUangMasuk = totalUangLunas + totalUangDP;
+        
         const omset = totalCount * HARGA_JUAL;
-        const sisaPiutang = omset - uangMasuk;
+        const sisaKekurangan = omset - totalUangMasuk;
         const vendor = totalCount * HARGA_VENDOR;
         const untung = totalCount * HARGA_UNTUNG;
 
-        // Update Tampilan Ringkasan Keuangan
+        // Update Tampilan Rincian Pembayaran
+        document.getElementById("count-lunas").textContent = `${countLunas} Orang`;
+        document.getElementById("uang-lunas").textContent = `Rp ${totalUangLunas.toLocaleString('id-ID')}`;
+
+        document.getElementById("count-dp").textContent = `${countDP} Orang`;
+        document.getElementById("uang-dp").textContent = `Rp ${totalUangDP.toLocaleString('id-ID')}`;
+
+        document.getElementById("count-belum").textContent = `${countBelum} Orang`;
+        document.getElementById("uang-kurang").textContent = `Kurang: Rp ${sisaKekurangan.toLocaleString('id-ID')}`;
+
+        // Update Summary Total Keuangan
         document.getElementById("total-pemesan").textContent = `${totalCount} Orang`;
-        document.getElementById("stat-pembayaran").textContent = `${countLunas} Lunas | ${countDP} DP | ${countBelum} Belum`;
-        
-        document.getElementById("uang-masuk").textContent = `Rp ${uangMasuk.toLocaleString('id-ID')}`;
-        document.getElementById("sisa-piutang").textContent = `Belum Lunas: Rp ${sisaPiutang.toLocaleString('id-ID')}`;
-        
+        document.getElementById("uang-masuk-total").textContent = `Rp ${totalUangMasuk.toLocaleString('id-ID')}`;
         document.getElementById("omset-kotor").textContent = `Rp ${omset.toLocaleString('id-ID')}`;
         document.getElementById("biaya-vendor").textContent = `Rp ${vendor.toLocaleString('id-ID')}`;
         document.getElementById("untung-bersih").textContent = `Rp ${untung.toLocaleString('id-ID')}`;
@@ -485,387 +463,15 @@
             return;
         }
 
-        const newItem = { nama, lengan," alt="Logo BLNK SQUAD" class="logo-img">
-    </div>
+        const newItem = { nama, lengan, size, status, ket };
+        db.ref(`orders/${kategori}`).push(newItem);
 
-    <h1>LIST ORDERAN KAOS BLNK SQUAD</h1>
-    
-    <div class="admin-bar">
-        <button id="btn-login" class="admin-btn" onclick="toggleAdmin()">🔒 Login Pemilik (Edit)</button>
-    </div>
-
-    <div class="rekap-card">
-        <div class="rekap-title">📊 Rekapan & Keuangan Otomatis</div>
-        <div class="rekap-grid">
-            <div class="rekap-box">
-                <h4>Total Pemesan</h4>
-                <div class="rekap-number" id="total-pemesan">0 Orang</div>
-                <div style="font-size: 0.75rem; color: #64748b; margin-top: 4px;" id="stat-pembayaran">
-                    0 Lunas | 0 DP | 0 Belum
-                </div>
-            </div>
-            <div class="rekap-box">
-                <h4>Total Uang Masuk</h4>
-                <div class="rekap-number" style="color: #16a34a;" id="uang-masuk">Rp 0</div>
-                <div style="font-size: 0.75rem; color: #dc2626; margin-top: 4px;" id="sisa-piutang">Belum Lunas: Rp 0</div>
-            </div>
-            <div class="rekap-box">
-                <h4>Estimasi Omset (@100k)</h4>
-                <div class="rekap-number" style="color: #2563eb;" id="omset-kotor">Rp 0</div>
-            </div>
-            <div class="rekap-box">
-                <h4>Biaya Vendor (@65k)</h4>
-                <div class="rekap-number" style="color: #dc2626;" id="biaya-vendor">Rp 0</div>
-            </div>
-            <div class="rekap-box">
-                <h4>Proyeksi Untung Bersih (@35k)</h4>
-                <div class="rekap-number" style="color: #16a34a;" id="untung-bersih">Rp 0</div>
-            </div>
-        </div>
-        <div style="margin-top: 12px;">
-            <h4 style="margin: 0 0 5px 0; color: #475569; font-size: 0.85rem;">Rincian Ukuran Kaos:</h4>
-            <div class="rekap-sizes" id="rincian-ukuran"></div>
-        </div>
-    </div>
-
-    <div id="form-admin" class="form-card">
-        <h3>+ Tambah Pemesan Baru</h3>
-        <div class="form-grid">
-            <div>
-                <label>Nama Pemesan:</label>
-                <input type="text" id="new-nama" placeholder="Masukkan nama..." required>
-            </div>
-            <div>
-                <label>Kategori:</label>
-                <select id="new-kategori">
-                    <option value="acara">Kaos + Acara</option>
-                    <option value="kaos">Kaos Saja</option>
-                </select>
-            </div>
-            <div>
-                <label>Jenis Lengan:</label>
-                <select id="new-lengan">
-                    <option value="Pendek" selected>Pendek</option>
-                    <option value="Panjang">Panjang</option>
-                </select>
-            </div>
-            <div>
-                <label>Ukuran Baju:</label>
-                <select id="new-size">
-                    <option value="S">S</option>
-                    <option value="M">M</option>
-                    <option value="L" selected>L</option>
-                    <option value="XL">XL</option>
-                    <option value="XXL">XXL</option>
-                    <option value="3XL">3XL</option>
-                    <option value="4XL">4XL</option>
-                    <option value="5XL">5XL</option>
-                </select>
-            </div>
-            <div>
-                <label>Status Pembayaran:</label>
-                <select id="new-status">
-                    <option value="Belum Lunas">Belum Lunas</option>
-                    <option value="Masih DP">Masih DP</option>
-                    <option value="Lunas">Lunas</option>
-                </select>
-            </div>
-            <div>
-                <label>Keterangan:</label>
-                <input type="text" id="new-ket" placeholder="Catatan tambahan (opsional)">
-            </div>
-        </div>
-        <button class="btn-submit" onclick="tambahPemesan()">Tambah Ke Daftar</button>
-    </div>
-
-    <div class="category-title">1. Kaos + Acara</div>
-    <table>
-        <thead>
-            <tr>
-                <th style="width: 5%; text-align: center;">No</th>
-                <th style="width: 22%;">Nama Pemesan</th>
-                <th style="width: 12%; text-align: center;">Lengan</th>
-                <th style="width: 10%; text-align: center;">Ukuran</th>
-                <th style="width: 18%;">Status Pembayaran</th>
-                <th style="width: 23%;">Keterangan</th>
-                <th style="width: 10%; text-align: center;">Aksi</th>
-            </tr>
-        </thead>
-        <tbody id="table-acara"></tbody>
-    </table>
-
-    <div class="category-title">2. Kaos Saja</div>
-    <table>
-        <thead>
-            <tr>
-                <th style="width: 5%; text-align: center;">No</th>
-                <th style="width: 22%;">Nama Pemesan</th>
-                <th style="width: 12%; text-align: center;">Lengan</th>
-                <th style="width: 10%; text-align: center;">Ukuran</th>
-                <th style="width: 18%;">Status Pembayaran</th>
-                <th style="width: 23%;">Keterangan</th>
-                <th style="width: 10%; text-align: center;">Aksi</th>
-            </tr>
-        </thead>
-        <tbody id="table-kaos"></tbody>
-    </table>
-</div>
-
-<script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyD4tBWUZ0VNlpmqqXsxdi6hfcUBOm4wfjw",
-      authDomain: "blnk2026.firebaseapp.com",
-      databaseURL: "https://blnk2026-default-rtdb.asia-southeast1.firebasedatabase.app",
-      projectId: "blnk2026",
-      storageBucket: "blnk2026.firebasestorage.app",
-      messagingSenderId: "597849777630",
-      appId: "1:597849777630:web:10d53b9ea08576fef5a94f",
-      measurementId: "G-BHWPN2NF0S"
-    };
-
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
-
-    const ADMIN_PASSWORD = "elang2026"; 
-    let isAdmin = false;
-    const sizeOptions = ["S", "M", "L", "XL", "XXL", "3XL", "4XL", "5XL"];
-    const lenganOptions = ["Pendek", "Panjang"];
-
-    function toggleAdmin() {
-        if (isAdmin) {
-            isAdmin = false;
-            document.getElementById("btn-login").textContent = "🔒 Login Pemilik (Edit)";
-            document.getElementById("btn-login").classList.remove("active");
-            document.getElementById("form-admin").classList.remove("show");
-            fetchRealtimeData();
-        } else {
-            const pass = prompt("Masukkan kata sandi pemilik:");
-            if (pass === ADMIN_PASSWORD) {
-                isAdmin = true;
-                document.getElementById("btn-login").textContent = "🔓 Keluar Mode Edit";
-                document.getElementById("btn-login").classList.add("active");
-                document.getElementById("form-admin").classList.add("show");
-                fetchRealtimeData();
-            } else if (pass !== null) {
-                alert("Kata sandi salah!");
-            }
-        }
+        document.getElementById("new-nama").value = "";
+        document.getElementById("new-ket").value = "";
     }
 
-    function renderTable(dataObj, tableId, categoryKey) {
-        const tbody = document.getElementById(tableId);
-        tbody.innerHTML = "";
+    document.addEventListener("DOMContentLoaded", fetchRealtimeData);
+</script>
 
-        if (!dataObj) return;
-
-        let index = 1;
-        Object.keys(dataObj).forEach(id => {
-            const item = dataObj[id];
-            const tr = document.createElement("tr");
-
-            const tdNo = document.createElement("td");
-            tdNo.textContent = index++;
-            tdNo.style.textAlign = "center";
-            tr.appendChild(tdNo);
-
-            const tdNama = document.createElement("td");
-            tdNama.textContent = item.nama;
-            tr.appendChild(tdNama);
-
-            const tdLengan = document.createElement("td");
-            if (isAdmin) {
-                const selectLengan = document.createElement("select");
-                lenganOptions.forEach(opt => {
-                    const option = document.createElement("option");
-                    option.value = opt;
-                    option.textContent = opt;
-                    if ((item.lengan || "Pendek") === opt) option.selected = true;
-                    selectLengan.appendChild(option);
-                });
-                selectLengan.addEventListener("change", () => {
-                    db.ref(`orders/${categoryKey}/${id}/lengan`).set(selectLengan.value);
-                });
-                tdLengan.appendChild(selectLengan);
-            } else {
-                tdLengan.textContent = item.lengan || "Pendek";
-                tdLengan.style.textAlign = "center";
-            }
-            tr.appendChild(tdLengan);
-
-            const tdSize = document.createElement("td");
-            if (isAdmin) {
-                const selectSize = document.createElement("select");
-                sizeOptions.forEach(opt => {
-                    const option = document.createElement("option");
-                    option.value = opt;
-                    option.textContent = opt;
-                    if (opt.toUpperCase() === (item.size || "").toUpperCase()) option.selected = true;
-                    selectSize.appendChild(option);
-                });
-                selectSize.addEventListener("change", () => {
-                    db.ref(`orders/${categoryKey}/${id}/size`).set(selectSize.value);
-                });
-                tdSize.appendChild(selectSize);
-            } else {
-                tdSize.textContent = item.size;
-                tdSize.style.textAlign = "center";
-            }
-            tr.appendChild(tdSize);
-
-            const tdStatus = document.createElement("td");
-            if (isAdmin) {
-                const selectStatus = document.createElement("select");
-                const statusOptions = ["Belum Lunas", "Masih DP", "Lunas"];
-                statusOptions.forEach(st => {
-                    const option = document.createElement("option");
-                    option.value = st;
-                    option.textContent = st;
-                    if (st === item.status) option.selected = true;
-                    selectStatus.appendChild(option);
-                });
-                selectStatus.addEventListener("change", () => {
-                    db.ref(`orders/${categoryKey}/${id}/status`).set(selectStatus.value);
-                });
-                tdStatus.appendChild(selectStatus);
-            } else {
-                const badge = document.createElement("span");
-                badge.textContent = item.status;
-                badge.className = "status-badge ";
-                if (item.status === "Lunas") badge.className += "status-lunas";
-                else if (item.status === "Masih DP") badge.className += "status-dp";
-                else badge.className += "status-belum";
-                tdStatus.appendChild(badge);
-            }
-            tr.appendChild(tdStatus);
-
-            const tdKet = document.createElement("td");
-            if (isAdmin) {
-                const inputKet = document.createElement("input");
-                inputKet.type = "text";
-                inputKet.value = item.ket || "";
-                inputKet.placeholder = "Keterangan...";
-                inputKet.addEventListener("change", () => {
-                    db.ref(`orders/${categoryKey}/${id}/ket`).set(inputKet.value);
-                });
-                tdKet.appendChild(inputKet);
-            } else {
-                tdKet.textContent = item.ket || "-";
-            }
-            tr.appendChild(tdKet);
-
-            const tdAksi = document.createElement("td");
-            tdAksi.style.textAlign = "center";
-            if (isAdmin) {
-                const btnDelete = document.createElement("button");
-                btnDelete.className = "btn-delete";
-                btnDelete.textContent = "Hapus";
-                btnDelete.onclick = () => {
-                    if (confirm(`Hapus ${item.nama}?`)) {
-                        db.ref(`orders/${categoryKey}/${id}`).remove();
-                    }
-                };
-                tdAksi.appendChild(btnDelete);
-            } else {
-                tdAksi.textContent = "🔒 Locked";
-                tdAksi.style.fontSize = "12px";
-                tdAksi.style.color = "#888";
-            }
-            tr.appendChild(tdAksi);
-
-            tbody.appendChild(tr);
-        });
-    }
-
-    function calculateRekap(data) {
-        let totalCount = 0;
-        let countLunas = 0;
-        let countDP = 0;
-        let countBelum = 0;
-        let sizeCounts = { S:0, M:0, L:0, XL:0, XXL:0, '3XL':0, '4XL':0, '5XL':0 };
-
-        ['acara', 'kaos'].forEach(cat => {
-            if (data[cat]) {
-                Object.values(data[cat]).forEach(item => {
-                    totalCount++;
-                    
-                    // Hitung rincian status pembayaran
-                    if (item.status === "Lunas") {
-                        countLunas++;
-                    } else if (item.status === "Masih DP") {
-                        countDP++;
-                    } else {
-                        countBelum++;
-                    }
-
-                    // Hitung rincian ukuran
-                    const sz = (item.size || '').toUpperCase();
-                    if (sizeCounts[sz] !== undefined) {
-                        sizeCounts[sz]++;
-                    }
-                });
-            }
-        });
-
-        const HARGA_JUAL = 100000;
-        const NOMINAL_DP = 50000;
-        const HARGA_VENDOR = 65000;
-        const HARGA_UNTUNG = 35000;
-
-        // Hitung Keuangan Riil berdasarkan status pembayaran
-        const uangMasuk = (countLunas * HARGA_JUAL) + (countDP * NOMINAL_DP);
-        const omset = totalCount * HARGA_JUAL;
-        const sisaPiutang = omset - uangMasuk;
-        const vendor = totalCount * HARGA_VENDOR;
-        const untung = totalCount * HARGA_UNTUNG;
-
-        // Update Tampilan Ringkasan Keuangan
-        document.getElementById("total-pemesan").textContent = `${totalCount} Orang`;
-        document.getElementById("stat-pembayaran").textContent = `${countLunas} Lunas | ${countDP} DP | ${countBelum} Belum`;
-        
-        document.getElementById("uang-masuk").textContent = `Rp ${uangMasuk.toLocaleString('id-ID')}`;
-        document.getElementById("sisa-piutang").textContent = `Belum Lunas: Rp ${sisaPiutang.toLocaleString('id-ID')}`;
-        
-        document.getElementById("omset-kotor").textContent = `Rp ${omset.toLocaleString('id-ID')}`;
-        document.getElementById("biaya-vendor").textContent = `Rp ${vendor.toLocaleString('id-ID')}`;
-        document.getElementById("untung-bersih").textContent = `Rp ${untung.toLocaleString('id-ID')}`;
-
-        // Update Rincian Ukuran Kaos
-        const rincianEl = document.getElementById("rincian-ukuran");
-        rincianEl.innerHTML = "";
-        Object.keys(sizeCounts).forEach(sz => {
-            if (sizeCounts[sz] > 0) {
-                const tag = document.createElement("span");
-                tag.className = "size-tag";
-                tag.textContent = `${sz}: ${sizeCounts[sz]} pcs`;
-                rincianEl.appendChild(tag);
-            }
-        });
-        if (rincianEl.innerHTML === "") {
-            rincianEl.innerHTML = "<span style='color:#888; font-size:13px;'>Belum ada data kaos.</span>";
-        }
-    }
-
-    function fetchRealtimeData() {
-        db.ref('orders').on('value', (snapshot) => {
-            const data = snapshot.val() || {};
-            renderTable(data.acara, "table-acara", "acara");
-            renderTable(data.kaos, "table-kaos", "kaos");
-            calculateRekap(data);
-        });
-    }
-
-    function tambahPemesan() {
-        if (!isAdmin) return;
-        const nama = document.getElementById("new-nama").value.trim();
-        const kategori = document.getElementById("new-kategori").value;
-        const lengan = document.getElementById("new-lengan").value;
-        const size = document.getElementById("new-size").value;
-        const status = document.getElementById("new-status").value;
-        const ket = document.getElementById("new-ket").value.trim();
-
-        if (!nama) {
-            alert("Harap isi nama pemesan terlebih dahulu!");
-            return;
-        }
-
-        const newItem = { nama, lengan,
+</body>
+</html>
