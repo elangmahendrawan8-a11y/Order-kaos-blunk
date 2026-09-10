@@ -3,44 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List Orderan Kaos BLNK SQUAD</title>
+    <title>Daftar Pengambilan Kaos - BLNK SQUAD</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 20px; background-color: #f4f6f9; color: #333; }
-        h1 { text-align: center; color: #1f4e78; margin-bottom: 10px; }
+        h1 { text-align: center; color: #1f4e78; margin-bottom: 5px; text-transform: uppercase; }
+        .subtitle { text-align: center; color: #666; margin-bottom: 20px; font-size: 14px; }
         .logo-container { text-align: center; margin-bottom: 10px; }
         .logo-img { max-width: 120px; height: auto; border-radius: 8px; }
-        .admin-bar { text-align: center; margin-bottom: 20px; }
-        .admin-btn { background-color: #1f4e78; color: white; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        
+        .container { max-width: 1100px; margin: 0 auto; background: #fff; padding: 25px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        
+        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+        .admin-btn { background-color: #1f4e78; color: white; border: none; padding: 10px 18px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 13px; }
         .admin-btn.active { background-color: #e74c3c; }
-        .container { max-width: 1000px; margin: 0 auto; background: #fff; padding: 25px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
-        .form-card { background-color: #eef2f5; padding: 20px; border-radius: 8px; margin-bottom: 30px; border: 1px solid #dcdfe3; display: none; }
+        .btn-history { background-color: #e67e22; color: white; border: none; padding: 10px 18px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 13px; }
+        
+        /* Form Admin */
+        .form-card { background-color: #eef2f5; padding: 20px; border-radius: 8px; margin-bottom: 25px; border: 1px solid #dcdfe3; display: none; }
         .form-card.show { display: block; }
         .form-card h3 { margin-top: 0; color: #1f4e78; }
-        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 15px; }
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 15px; }
         .btn-submit { background-color: #27ae60; color: white; border: none; padding: 10px 20px; font-size: 14px; font-weight: bold; border-radius: 5px; cursor: pointer; width: 100%; }
-        .btn-delete { background-color: #e74c3c; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; }
-        .category-title { background-color: #2d572c; color: white; padding: 12px 18px; margin-top: 30px; border-radius: 6px; font-size: 1.15rem; font-weight: bold; }
         
-        .rekap-card { background: #fff; border: 2px solid #1f4e78; border-radius: 8px; padding: 15px; margin-bottom: 25px; }
-        .rekap-title { font-weight: bold; font-size: 1.1rem; color: #1f4e78; margin-bottom: 12px; border-bottom: 1px solid #ddd; padding-bottom: 5px; }
-        .rekap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
-        .rekap-box { background: #f8fafc; padding: 12px; border-radius: 6px; border: 1px solid #e2e8f0; }
-        .rekap-box h4 { margin: 0 0 5px 0; color: #475569; font-size: 0.85rem; }
-        .rekap-number { font-size: 1.2rem; font-weight: bold; color: #0f172a; }
-        .rekap-money { font-size: 0.95rem; font-weight: bold; margin-top: 4px; }
-        .rekap-sizes { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 5px; }
-        .size-tag { background: #e2e8f0; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
-        
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; margin-bottom: 25px; }
-        th, td { border: 1px solid #e0e0e0; padding: 10px 12px; text-align: left; }
-        th { background-color: #1f4e78; color: white; font-weight: 600; }
+        /* Tabel */
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; table-layout: auto; }
+        th, td { border: 1px solid #e0e0e0; padding: 12px 10px; text-align: left; font-size: 14px; }
+        th { background-color: #1f4e78; color: white; font-weight: 600; text-align: center; }
         tr:nth-child(even) { background-color: #f8fafc; }
-        select, input[type="text"] { width: 100%; padding: 8px 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 14px; }
-        .status-badge { padding: 6px 10px; border-radius: 4px; font-weight: bold; display: inline-block; font-size: 13px; }
+        tr.sudah-ambil-row { background-color: #f1f8f5; }
+        
+        select, input[type="text"] { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; font-size: 13px; }
+        
+        /* Badges & Buttons */
+        .status-badge { padding: 5px 10px; border-radius: 12px; font-weight: bold; display: inline-block; font-size: 12px; text-align: center; }
         .status-lunas { background-color: #d4edda; color: #155724; }
         .status-dp { background-color: #fff3cd; color: #856404; }
         .status-belum { background-color: #f8d7da; color: #721c24; }
-        @media (max-width: 600px) { .container { padding: 12px; } table, th, td { font-size: 13px; padding: 6px; } }
+        
+        .badge-cutting { background: #e2e8f0; color: #334155; padding: 4px 8px; border-radius: 4px; font-weight: 600; font-size: 12px; }
+        
+        .btn-ambil { background-color: #27ae60; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 12px; transition: 0.2s; }
+        .btn-ambil:hover { background-color: #219150; }
+        .status-diambil { color: #27ae60; font-weight: bold; font-size: 13px; display: inline-block; }
+        
+        .btn-delete { background-color: #e74c3c; color: white; border: none; padding: 5px 8px; border-radius: 4px; cursor: pointer; font-size: 11px; }
+        .btn-reset { background-color: #95a5a6; color: white; border: none; padding: 5px 8px; border-radius: 4px; cursor: pointer; font-size: 11px; margin-bottom: 3px; }
+
+        /* Modal Data Lama */
+        .modal { display: none; position: fixed; z-index: 10; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
+        .modal-content { background: white; margin: 5% auto; padding: 20px; max-width: 900px; border-radius: 8px; max-height: 80vh; overflow-y: auto; }
+        .close-modal { float: right; font-size: 20px; font-weight: bold; cursor: pointer; color: #aaa; }
+
+        @media (max-width: 768px) {
+            .container { padding: 10px; }
+            table, th, td { font-size: 12px; padding: 8px 5px; }
+            .btn-ambil { padding: 4px 8px; font-size: 11px; }
+        }
     </style>
 
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
@@ -49,90 +67,32 @@
 <body>
 
 <div class="container">
-    <!-- POSISI LOGO -->
     <div class="logo-container">
-        <img src="URL_LINK_GAMBAR_LOGO_ANDA" alt="Logo BLNK SQUAD" class="logo-img">
+        <img src="https://i.ibb.co/3pX605G/logo-blnk.png" alt="Logo BLNK SQUAD" class="logo-img">
     </div>
 
-    <h1>LIST ORDERAN KAOS BLNK SQUAD</h1>
+    <h1>DAFTAR PENGAMBILAN KAOS</h1>
+    <p class="subtitle">Silakan ceklis nama Anda jika sudah mengambil kaos di tempat.</p>
     
-    <div class="admin-bar">
-        <button id="btn-login" class="admin-btn" onclick="toggleAdmin()">🔒 Login Pemilik (Edit)</button>
+    <div class="top-bar">
+        <button class="btn-history" onclick="openHistoryModal()">📋 Cek Data Lama / Archive</button>
+        <button id="btn-login" class="admin-btn" onclick="toggleAdmin()">🔒 Login Edit (Panitia)</button>
     </div>
 
-    <div class="rekap-card">
-        <div class="rekap-title">📊 Rekapan Pembayaran & Keuangan Otomatis</div>
-        
-        <!-- BARIS 1: REKAPAN TIPE PEMBAYARAN & UANG MASUK TIEP TIPE -->
-        <div class="rekap-grid" style="margin-bottom: 12px;">
-            <div class="rekap-box" style="border-left: 4px solid #16a34a; background-color: #f0fdf4;">
-                <h4 style="color: #166534;">✅ Sudah Lunas (@100k)</h4>
-                <div class="rekap-number" style="color: #166534;" id="count-lunas">0 Orang</div>
-                <div class="rekap-money" style="color: #15803d;" id="uang-lunas">Rp 0</div>
-            </div>
-            
-            <div class="rekap-box" style="border-left: 4px solid #d97706; background-color: #fffbeb;">
-                <h4 style="color: #92400e;">⏳ Masih DP (@50k)</h4>
-                <div class="rekap-number" style="color: #92400e;" id="count-dp">0 Orang</div>
-                <div class="rekap-money" style="color: #b45309;" id="uang-dp">Rp 0</div>
-            </div>
-            
-            <div class="rekap-box" style="border-left: 4px solid #dc2626; background-color: #fef2f2;">
-                <h4 style="color: #991b1b;">❌ Belum Bayar</h4>
-                <div class="rekap-number" style="color: #991b1b;" id="count-belum">0 Orang</div>
-                <div class="rekap-money" style="color: #dc2626;" id="uang-kurang">Kurang: Rp 0</div>
-            </div>
-        </div>
-
-        <!-- BARIS 2: SUMMARY KEUANGAN TOTAL -->
-        <div class="rekap-grid">
-            <div class="rekap-box">
-                <h4>Total Pemesan</h4>
-                <div class="rekap-number" id="total-pemesan">0 Orang</div>
-            </div>
-            <div class="rekap-box">
-                <h4>Total Cash Masuk</h4>
-                <div class="rekap-number" style="color: #16a34a;" id="uang-masuk-total">Rp 0</div>
-            </div>
-            <div class="rekap-box">
-                <h4>Estimasi Omset (@100k)</h4>
-                <div class="rekap-number" style="color: #2563eb;" id="omset-kotor">Rp 0</div>
-            </div>
-            <div class="rekap-box">
-                <h4>Biaya Vendor (@65k)</h4>
-                <div class="rekap-number" style="color: #dc2626;" id="biaya-vendor">Rp 0</div>
-            </div>
-            <div class="rekap-box">
-                <h4>Proyeksi Untung (@35k)</h4>
-                <div class="rekap-number" style="color: #16a34a;" id="untung-bersih">Rp 0</div>
-            </div>
-        </div>
-
-        <div style="margin-top: 15px;">
-            <h4 style="margin: 0 0 5px 0; color: #475569; font-size: 0.85rem;">Rincian Ukuran Kaos:</h4>
-            <div class="rekap-sizes" id="rincian-ukuran"></div>
-        </div>
-    </div>
-
+    <!-- Mode Tambah Data Pemesan (Khusus Admin) -->
     <div id="form-admin" class="form-card">
-        <h3>+ Tambah Pemesan Baru</h3>
+        <h3>+ Tambah Orderan Baru</h3>
         <div class="form-grid">
             <div>
                 <label>Nama Pemesan:</label>
-                <input type="text" id="new-nama" placeholder="Masukkan nama..." required>
+                <input type="text" id="new-nama" placeholder="Nama pemesan" required>
             </div>
             <div>
-                <label>Kategori:</label>
-                <select id="new-kategori">
-                    <option value="acara">Kaos + Acara</option>
-                    <option value="kaos">Kaos Saja</option>
-                </select>
-            </div>
-            <div>
-                <label>Jenis Lengan:</label>
-                <select id="new-lengan">
-                    <option value="Pendek" selected>Pendek</option>
-                    <option value="Panjang">Panjang</option>
+                <label>Status Bayar:</label>
+                <select id="new-status">
+                    <option value="Lunas">Lunas</option>
+                    <option value="Masih DP">Masih DP</option>
+                    <option value="Belum Lunas">Belum Lunas</option>
                 </select>
             </div>
             <div>
@@ -149,52 +109,62 @@
                 </select>
             </div>
             <div>
-                <label>Status Pembayaran:</label>
-                <select id="new-status">
-                    <option value="Belum Lunas">Belum Lunas</option>
-                    <option value="Masih DP">Masih DP</option>
-                    <option value="Lunas">Lunas</option>
+                <label>Jenis Lengan:</label>
+                <select id="new-lengan">
+                    <option value="Pendek" selected>Pendek</option>
+                    <option value="Panjang">Panjang</option>
                 </select>
             </div>
             <div>
-                <label>Keterangan:</label>
-                <input type="text" id="new-ket" placeholder="Catatan tambahan (opsional)">
+                <label>Cutting Baju:</label>
+                <select id="new-cutting">
+                    <option value="Reguler" selected>Reguler</option>
+                    <option value="Boxy">Boxy</option>
+                </select>
             </div>
         </div>
-        <button class="btn-submit" onclick="tambahPemesan()">Tambah Ke Daftar</button>
+        <button class="btn-submit" onclick="tambahPemesan()">Simpan Ke Daftar</button>
     </div>
 
-    <div class="category-title">1. Kaos + Acara</div>
+    <!-- Tabel Utama -->
     <table>
         <thead>
             <tr>
-                <th style="width: 5%; text-align: center;">No</th>
-                <th style="width: 22%;">Nama Pemesan</th>
-                <th style="width: 12%; text-align: center;">Lengan</th>
-                <th style="width: 10%; text-align: center;">Ukuran</th>
-                <th style="width: 18%;">Status Pembayaran</th>
-                <th style="width: 23%;">Keterangan</th>
-                <th style="width: 10%; text-align: center;">Aksi</th>
+                <th style="width: 5%;">No</th>
+                <th style="width: 25%;">Nama Pemesan</th>
+                <th style="width: 15%;">Status Bayar</th>
+                <th style="width: 10%;">Ukuran</th>
+                <th style="width: 12%;">Lengan</th>
+                <th style="width: 12%;">Cutting</th>
+                <th style="width: 13%;">Pengambilan</th>
+                <th id="th-aksi" style="width: 8%; display: none;">Aksi</th>
             </tr>
         </thead>
-        <tbody id="table-acara"></tbody>
+        <tbody id="table-body"></tbody>
     </table>
+</div>
 
-    <div class="category-title">2. Kaos Saja</div>
-    <table>
-        <thead>
-            <tr>
-                <th style="width: 5%; text-align: center;">No</th>
-                <th style="width: 22%;">Nama Pemesan</th>
-                <th style="width: 12%; text-align: center;">Lengan</th>
-                <th style="width: 10%; text-align: center;">Ukuran</th>
-                <th style="width: 18%;">Status Pembayaran</th>
-                <th style="width: 23%;">Keterangan</th>
-                <th style="width: 10%; text-align: center;">Aksi</th>
-            </tr>
-        </thead>
-        <tbody id="table-kaos"></tbody>
-    </table>
+<!-- Modal Pop-up Cek Data Lama -->
+<div id="historyModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeHistoryModal()">&times;</span>
+        <h2>📋 Arsip Data Lama</h2>
+        <p style="font-size: 13px; color: #666;">Daftar orderan dari versi sebelumnya.</p>
+        <table style="margin-top: 15px;">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Status Bayar</th>
+                    <th>Ukuran</th>
+                    <th>Lengan</th>
+                    <th>Cutting</th>
+                    <th>Status Ambil</th>
+                </tr>
+            </thead>
+            <tbody id="history-table-body"></tbody>
+        </table>
+    </div>
 </div>
 
 <script>
@@ -216,30 +186,76 @@
     let isAdmin = false;
     const sizeOptions = ["S", "M", "L", "XL", "XXL", "3XL", "4XL", "5XL"];
     const lenganOptions = ["Pendek", "Panjang"];
+    const cuttingOptions = ["Reguler", "Boxy"];
+    const statusOptions = ["Lunas", "Masih DP", "Belum Lunas"];
+
+    // Otomatis pindahkan data lama ke struktur tabel baru tanpa input manual
+    function migrasiDataLamaOtomatis() {
+        if (localStorage.getItem('blnk_migrated_v2')) return;
+
+        db.ref('orders').once('value', (snapshot) => {
+            if (!snapshot.exists()) return;
+
+            const dataLama = snapshot.val();
+            const updates = {};
+
+            ['acara', 'kaos'].forEach(cat => {
+                if (dataLama[cat]) {
+                    Object.keys(dataLama[cat]).forEach(id => {
+                        const item = dataLama[cat][id];
+                        const newRefKey = db.ref('orders_v2').push().key;
+                        updates[`orders_v2/${newRefKey}`] = {
+                            nama: item.nama || "",
+                            status: item.status || "Belum Lunas",
+                            size: item.size || "L",
+                            lengan: item.lengan || "Pendek",
+                            cutting: item.cutting || "Reguler",
+                            sudahAmbil: item.sudahAmbil || false,
+                            isArchived: false
+                        };
+                    });
+                }
+            });
+
+            db.ref().update(updates).then(() => {
+                localStorage.setItem('blnk_migrated_v2', 'true');
+            });
+        });
+    }
 
     function toggleAdmin() {
         if (isAdmin) {
             isAdmin = false;
-            document.getElementById("btn-login").textContent = "🔒 Login Pemilik (Edit)";
-            document.getElementById("btn-login").classList.remove("active");
-            document.getElementById("form-admin").classList.remove("show");
-            fetchRealtimeData();
+            exitAdminMode();
         } else {
-            const pass = prompt("Masukkan kata sandi pemilik:");
+            const pass = prompt("Masukkan password Panitia:");
             if (pass === ADMIN_PASSWORD) {
                 isAdmin = true;
-                document.getElementById("btn-login").textContent = "🔓 Keluar Mode Edit";
-                document.getElementById("btn-login").classList.add("active");
-                document.getElementById("form-admin").classList.add("show");
-                fetchRealtimeData();
+                enterAdminMode();
             } else if (pass !== null) {
-                alert("Kata sandi salah!");
+                alert("Password salah!");
             }
         }
     }
 
-    function renderTable(dataObj, tableId, categoryKey) {
-        const tbody = document.getElementById(tableId);
+    function enterAdminMode() {
+        document.getElementById("btn-login").textContent = "🔓 Keluar Mode Edit";
+        document.getElementById("btn-login").classList.add("active");
+        document.getElementById("form-admin").classList.add("show");
+        document.getElementById("th-aksi").style.display = "table-cell";
+        fetchRealtimeData();
+    }
+
+    function exitAdminMode() {
+        document.getElementById("btn-login").textContent = "🔒 Login Edit (Panitia)";
+        document.getElementById("btn-login").classList.remove("active");
+        document.getElementById("form-admin").classList.remove("show");
+        document.getElementById("th-aksi").style.display = "none";
+        fetchRealtimeData();
+    }
+
+    function renderTable(dataObj) {
+        const tbody = document.getElementById("table-body");
         tbody.innerHTML = "";
 
         if (!dataObj) return;
@@ -247,75 +263,33 @@
         let index = 1;
         Object.keys(dataObj).forEach(id => {
             const item = dataObj[id];
-            const tr = document.createElement("tr");
+            if (item.isArchived) return;
 
+            const tr = document.createElement("tr");
+            if (item.sudahAmbil) tr.className = "sudah-ambil-row";
+
+            // 1. No
             const tdNo = document.createElement("td");
             tdNo.textContent = index++;
             tdNo.style.textAlign = "center";
             tr.appendChild(tdNo);
 
+            // 2. Nama
             const tdNama = document.createElement("td");
             tdNama.textContent = item.nama;
             tr.appendChild(tdNama);
 
-            const tdLengan = document.createElement("td");
-            if (isAdmin) {
-                const selectLengan = document.createElement("select");
-                lenganOptions.forEach(opt => {
-                    const option = document.createElement("option");
-                    option.value = opt;
-                    option.textContent = opt;
-                    if ((item.lengan || "Pendek") === opt) option.selected = true;
-                    selectLengan.appendChild(option);
-                });
-                selectLengan.addEventListener("change", () => {
-                    db.ref(`orders/${categoryKey}/${id}/lengan`).set(selectLengan.value);
-                });
-                tdLengan.appendChild(selectLengan);
-            } else {
-                tdLengan.textContent = item.lengan || "Pendek";
-                tdLengan.style.textAlign = "center";
-            }
-            tr.appendChild(tdLengan);
-
-            const tdSize = document.createElement("td");
-            if (isAdmin) {
-                const selectSize = document.createElement("select");
-                sizeOptions.forEach(opt => {
-                    const option = document.createElement("option");
-                    option.value = opt;
-                    option.textContent = opt;
-                    if (opt.toUpperCase() === (item.size || "").toUpperCase()) option.selected = true;
-                    selectSize.appendChild(option);
-                });
-                selectSize.addEventListener("change", () => {
-                    db.ref(`orders/${categoryKey}/${id}/size`).set(selectSize.value);
-                });
-                tdSize.appendChild(selectSize);
-            } else {
-                tdSize.textContent = item.size;
-                tdSize.style.textAlign = "center";
-            }
-            tr.appendChild(tdSize);
-
+            // 3. Status Pembayaran
             const tdStatus = document.createElement("td");
+            tdStatus.style.textAlign = "center";
             if (isAdmin) {
-                const selectStatus = document.createElement("select");
-                const statusOptions = ["Belum Lunas", "Masih DP", "Lunas"];
-                statusOptions.forEach(st => {
-                    const option = document.createElement("option");
-                    option.value = st;
-                    option.textContent = st;
-                    if (st === item.status) option.selected = true;
-                    selectStatus.appendChild(option);
+                const selStatus = createDropdown(statusOptions, item.status, (val) => {
+                    db.ref(`orders_v2/${id}/status`).set(val);
                 });
-                selectStatus.addEventListener("change", () => {
-                    db.ref(`orders/${categoryKey}/${id}/status`).set(selectStatus.value);
-                });
-                tdStatus.appendChild(selectStatus);
+                tdStatus.appendChild(selStatus);
             } else {
                 const badge = document.createElement("span");
-                badge.textContent = item.status;
+                badge.textContent = item.status || "Belum Lunas";
                 badge.className = "status-badge ";
                 if (item.status === "Lunas") badge.className += "status-lunas";
                 else if (item.status === "Masih DP") badge.className += "status-dp";
@@ -324,154 +298,157 @@
             }
             tr.appendChild(tdStatus);
 
-            const tdKet = document.createElement("td");
+            // 4. Ukuran
+            const tdSize = document.createElement("td");
+            tdSize.style.textAlign = "center";
             if (isAdmin) {
-                const inputKet = document.createElement("input");
-                inputKet.type = "text";
-                inputKet.value = item.ket || "";
-                inputKet.placeholder = "Keterangan...";
-                inputKet.addEventListener("change", () => {
-                    db.ref(`orders/${categoryKey}/${id}/ket`).set(inputKet.value);
+                const selSize = createDropdown(sizeOptions, item.size, (val) => {
+                    db.ref(`orders_v2/${id}/size`).set(val);
                 });
-                tdKet.appendChild(inputKet);
+                tdSize.appendChild(selSize);
             } else {
-                tdKet.textContent = item.ket || "-";
+                tdSize.textContent = item.size || "-";
             }
-            tr.appendChild(tdKet);
+            tr.appendChild(tdSize);
 
-            const tdAksi = document.createElement("td");
-            tdAksi.style.textAlign = "center";
+            // 5. Lengan
+            const tdLengan = document.createElement("td");
+            tdLengan.style.textAlign = "center";
             if (isAdmin) {
-                const btnDelete = document.createElement("button");
-                btnDelete.className = "btn-delete";
-                btnDelete.textContent = "Hapus";
-                btnDelete.onclick = () => {
-                    if (confirm(`Hapus ${item.nama}?`)) {
-                        db.ref(`orders/${categoryKey}/${id}`).remove();
+                const selLengan = createDropdown(lenganOptions, item.lengan, (val) => {
+                    db.ref(`orders_v2/${id}/lengan`).set(val);
+                });
+                tdLengan.appendChild(selLengan);
+            } else {
+                tdLengan.textContent = item.lengan || "Pendek";
+            }
+            tr.appendChild(tdLengan);
+
+            // 6. Cutting
+            const tdCutting = document.createElement("td");
+            tdCutting.style.textAlign = "center";
+            if (isAdmin) {
+                const selCutting = createDropdown(cuttingOptions, item.cutting, (val) => {
+                    db.ref(`orders_v2/${id}/cutting`).set(val);
+                });
+                tdCutting.appendChild(selCutting);
+            } else {
+                const span = document.createElement("span");
+                span.className = "badge-cutting";
+                span.textContent = item.cutting || "Reguler";
+                tdCutting.appendChild(span);
+            }
+            tr.appendChild(tdCutting);
+
+            // 7. Pengambilan (Ceklis)
+            const tdAmbil = document.createElement("td");
+            tdAmbil.style.textAlign = "center";
+            if (item.sudahAmbil) {
+                tdAmbil.innerHTML = `<span class="status-diambil">✅ Sudah Ambil</span>`;
+            } else {
+                const btnAmbil = document.createElement("button");
+                btnAmbil.className = "btn-ambil";
+                btnAmbil.innerHTML = "⬜ Ceklis Ambil";
+                btnAmbil.onclick = () => {
+                    if (confirm(`Tandai bahwa ${item.nama} sudah mengambil kaos?`)) {
+                        db.ref(`orders_v2/${id}/sudahAmbil`).set(true);
                     }
                 };
-                tdAksi.appendChild(btnDelete);
-            } else {
-                tdAksi.textContent = "🔒 Locked";
-                tdAksi.style.fontSize = "12px";
-                tdAksi.style.color = "#888";
+                tdAmbil.appendChild(btnAmbil);
             }
-            tr.appendChild(tdAksi);
+            tr.appendChild(tdAmbil);
+
+            // 8. Aksi (Admin)
+            if (isAdmin) {
+                const tdAksi = document.createElement("td");
+                tdAksi.style.textAlign = "center";
+                
+                if (item.sudahAmbil) {
+                    const btnReset = document.createElement("button");
+                    btnReset.className = "btn-reset";
+                    btnReset.textContent = "Batal Ambil";
+                    btnReset.onclick = () => db.ref(`orders_v2/${id}/sudahAmbil`).set(false);
+                    tdAksi.appendChild(btnReset);
+                }
+
+                const btnDel = document.createElement("button");
+                btnDel.className = "btn-delete";
+                btnDel.textContent = "Hapus";
+                btnDel.onclick = () => {
+                    if(confirm(`Hapus data ${item.nama}?`)) {
+                        db.ref(`orders_v2/${id}`).remove();
+                    }
+                };
+                tdAksi.appendChild(btnDel);
+                tr.appendChild(tdAksi);
+            }
 
             tbody.appendChild(tr);
         });
     }
 
-    function calculateRekap(data) {
-        let totalCount = 0;
-        let countLunas = 0;
-        let countDP = 0;
-        let countBelum = 0;
-        let sizeCounts = { S:0, M:0, L:0, XL:0, XXL:0, '3XL':0, '4XL':0, '5XL':0 };
-
-        ['acara', 'kaos'].forEach(cat => {
-            if (data[cat]) {
-                Object.values(data[cat]).forEach(item => {
-                    totalCount++;
-                    
-                    // Hitung rincian status pembayaran
-                    if (item.status === "Lunas") {
-                        countLunas++;
-                    } else if (item.status === "Masih DP") {
-                        countDP++;
-                    } else {
-                        countBelum++;
-                    }
-
-                    // Hitung rincian ukuran
-                    const sz = (item.size || '').toUpperCase();
-                    if (sizeCounts[sz] !== undefined) {
-                        sizeCounts[sz]++;
-                    }
-                });
-            }
+    function createDropdown(options, selectedVal, onChange) {
+        const select = document.createElement("select");
+        options.forEach(opt => {
+            const option = document.createElement("option");
+            option.value = opt;
+            option.textContent = opt;
+            if (opt === selectedVal) option.selected = true;
+            select.appendChild(option);
         });
-
-        const HARGA_JUAL = 100000;
-        const NOMINAL_DP = 50000;
-        const HARGA_VENDOR = 65000;
-        const HARGA_UNTUNG = 35000;
-
-        // Hitung Nominal Keuangan Spesifik
-        const totalUangLunas = countLunas * HARGA_JUAL;  // Misal: 4 orang x 100rb = 400rb
-        const totalUangDP = countDP * NOMINAL_DP;       // Misal: 4 orang x 50rb = 200rb
-        const totalUangMasuk = totalUangLunas + totalUangDP;
-        
-        const omset = totalCount * HARGA_JUAL;
-        const sisaKekurangan = omset - totalUangMasuk;
-        const vendor = totalCount * HARGA_VENDOR;
-        const untung = totalCount * HARGA_UNTUNG;
-
-        // Update Tampilan Rincian Pembayaran
-        document.getElementById("count-lunas").textContent = `${countLunas} Orang`;
-        document.getElementById("uang-lunas").textContent = `Rp ${totalUangLunas.toLocaleString('id-ID')}`;
-
-        document.getElementById("count-dp").textContent = `${countDP} Orang`;
-        document.getElementById("uang-dp").textContent = `Rp ${totalUangDP.toLocaleString('id-ID')}`;
-
-        document.getElementById("count-belum").textContent = `${countBelum} Orang`;
-        document.getElementById("uang-kurang").textContent = `Kurang: Rp ${sisaKekurangan.toLocaleString('id-ID')}`;
-
-        // Update Summary Total Keuangan
-        document.getElementById("total-pemesan").textContent = `${totalCount} Orang`;
-        document.getElementById("uang-masuk-total").textContent = `Rp ${totalUangMasuk.toLocaleString('id-ID')}`;
-        document.getElementById("omset-kotor").textContent = `Rp ${omset.toLocaleString('id-ID')}`;
-        document.getElementById("biaya-vendor").textContent = `Rp ${vendor.toLocaleString('id-ID')}`;
-        document.getElementById("untung-bersih").textContent = `Rp ${untung.toLocaleString('id-ID')}`;
-
-        // Update Rincian Ukuran Kaos
-        const rincianEl = document.getElementById("rincian-ukuran");
-        rincianEl.innerHTML = "";
-        Object.keys(sizeCounts).forEach(sz => {
-            if (sizeCounts[sz] > 0) {
-                const tag = document.createElement("span");
-                tag.className = "size-tag";
-                tag.textContent = `${sz}: ${sizeCounts[sz]} pcs`;
-                rincianEl.appendChild(tag);
-            }
-        });
-        if (rincianEl.innerHTML === "") {
-            rincianEl.innerHTML = "<span style='color:#888; font-size:13px;'>Belum ada data kaos.</span>";
-        }
+        select.addEventListener("change", () => onChange(select.value));
+        return select;
     }
 
     function fetchRealtimeData() {
-        db.ref('orders').on('value', (snapshot) => {
+        db.ref('orders_v2').on('value', (snapshot) => {
             const data = snapshot.val() || {};
-            renderTable(data.acara, "table-acara", "acara");
-            renderTable(data.kaos, "table-kaos", "kaos");
-            calculateRekap(data);
+            renderTable(data);
         });
     }
 
     function tambahPemesan() {
         if (!isAdmin) return;
         const nama = document.getElementById("new-nama").value.trim();
-        const kategori = document.getElementById("new-kategori").value;
-        const lengan = document.getElementById("new-lengan").value;
-        const size = document.getElementById("new-size").value;
         const status = document.getElementById("new-status").value;
-        const ket = document.getElementById("new-ket").value.trim();
+        const size = document.getElementById("new-size").value;
+        const lengan = document.getElementById("new-lengan").value;
+        const cutting = document.getElementById("new-cutting").value;
 
         if (!nama) {
-            alert("Harap isi nama pemesan terlebih dahulu!");
+            alert("Nama pemesan wajib diisi!");
             return;
         }
 
-        const newItem = { nama, lengan, size, status, ket };
-        db.ref(`orders/${kategori}`).push(newItem);
-
-        document.getElementById("new-nama").value = "";
-        document.getElementById("new-ket").value = "";
+        const newItem = { nama, status, size, lengan, cutting, sudahAmbil: false, isArchived: false };
+        db.ref('orders_v2').push(newItem)
+            .then(() => {
+                document.getElementById("new-nama").value = "";
+            })
+            .catch((err) => alert("Gagal menambah data: " + err.message));
     }
 
-    document.addEventListener("DOMContentLoaded", fetchRealtimeData);
-</script>
+    function openHistoryModal() {
+        document.getElementById("historyModal").style.display = "block";
+        const tbody = document.getElementById("history-table-body");
+        tbody.innerHTML = "<tr><td colspan='7' style='text-align:center;'>Memuat data lama...</td></tr>";
 
-</body>
-</html>
+        db.ref('orders').once('value', (snapshot) => {
+            tbody.innerHTML = "";
+            let idx = 1;
+
+            if (snapshot.exists()) {
+                const data = snapshot.val();
+                ['acara', 'kaos'].forEach(cat => {
+                    if (data[cat]) {
+                        Object.values(data[cat]).forEach(item => {
+                            const tr = document.createElement("tr");
+                            tr.innerHTML = `
+                                <td style="text-align:center;">${idx++}</td>
+                                <td>${item.nama || '-'}</td>
+                                <td style="text-align:center;">${item.status || '-'}</td>
+                                <td style="text-align:center;">${item.size || '-'}</td>
+                                <td style="text-align:center;">${item.lengan || '-'}</td>
+                                <td style="text-align:center;">Reguler</td>
+                                <td style="text-align:center;">${item.sudahAmbil ? '✅ Sudah' : '❌ Belum'}</td>
+                  
