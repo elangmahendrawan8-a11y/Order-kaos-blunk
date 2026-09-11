@@ -29,7 +29,7 @@
         .table-responsive { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
         
         /* Tabel */
-        table { width: 100%; border-collapse: collapse; margin-top: 5px; min-width: 600px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 5px; min-width: 650px; }
         th, td { border: 1px solid #e0e0e0; padding: 10px 8px; text-align: left; font-size: 13px; }
         th { background-color: #1f4e78; color: white; font-weight: 600; text-align: center; }
         tr:nth-child(even) { background-color: #f8fafc; }
@@ -37,7 +37,7 @@
         
         select, input[type="text"] { width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; font-size: 12px; }
         
-        /* Badges & Buttons */
+        /* Badges */
         .status-badge { padding: 4px 8px; border-radius: 12px; font-weight: bold; display: inline-block; font-size: 11px; text-align: center; }
         .status-lunas { background-color: #d4edda; color: #155724; }
         .status-dp { background-color: #fff3cd; color: #856404; }
@@ -45,12 +45,11 @@
         
         .badge-cutting { background: #e2e8f0; color: #334155; padding: 3px 6px; border-radius: 4px; font-weight: 600; font-size: 11px; }
         
-        .btn-ambil { background-color: #27ae60; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 11px; }
-        .btn-ambil:hover { background-color: #219150; }
-        .status-diambil { color: #27ae60; font-weight: bold; font-size: 12px; display: inline-block; }
+        .status-ambil-text { font-weight: bold; font-size: 12px; padding: 4px 8px; border-radius: 4px; display: inline-block; }
+        .ambil-sudah { color: #155724; background-color: #d4edda; }
+        .ambil-belum { color: #721c24; background-color: #f8d7da; }
         
-        .btn-delete { background-color: #e74c3c; color: white; border: none; padding: 4px 6px; border-radius: 4px; cursor: pointer; font-size: 10px; }
-        .btn-reset { background-color: #95a5a6; color: white; border: none; padding: 4px 6px; border-radius: 4px; cursor: pointer; font-size: 10px; margin-bottom: 3px; }
+        .btn-delete { background-color: #e74c3c; color: white; border: none; padding: 5px 8px; border-radius: 4px; cursor: pointer; font-size: 11px; }
     </style>
 
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
@@ -64,7 +63,7 @@
     </div>
 
     <h1>DAFTAR PENGAMBILAN KAOS</h1>
-    <p class="subtitle">Silakan ceklis nama Anda jika sudah mengambil kaos di tempat.</p>
+    <p class="subtitle">Daftar status pemesanan dan pengambilan kaos di tempat.</p>
     
     <div class="top-bar">
         <div class="total-badge">📋 Total Orderan: <span id="total-count">0</span> Orang</div>
@@ -121,6 +120,13 @@
                     <option value="Boxy">Boxy</option>
                 </select>
             </div>
+            <div>
+                <label style="font-size: 11px;">Status Pengambilan:</label>
+                <select id="new-ambil">
+                    <option value="false" selected>Belum Ambil</option>
+                    <option value="true">Sudah Ambil</option>
+                </select>
+            </div>
         </div>
         <button class="btn-submit" onclick="tambahPemesan()">Simpan Ke Daftar</button>
     </div>
@@ -132,12 +138,12 @@
                 <tr>
                     <th style="width: 5%;">No</th>
                     <th>Nama Pemesan</th>
-                    <th style="width: 14%;">Status</th>
-                    <th style="width: 10%;">Size</th>
-                    <th style="width: 12%;">Lengan</th>
-                    <th style="width: 12%;">Cutting</th>
+                    <th style="width: 14%;">Status Bayar</th>
+                    <th style="width: 8%;">Size</th>
+                    <th style="width: 10%;">Lengan</th>
+                    <th style="width: 10%;">Cutting</th>
                     <th style="width: 16%;">Pengambilan</th>
-                    <th id="th-aksi" style="width: 10%; display: none;">Aksi</th>
+                    <th id="th-aksi" style="width: 8%; display: none;">Aksi</th>
                 </tr>
             </thead>
             <tbody id="table-body">
@@ -201,7 +207,6 @@
     }
 
     function fetchRealtimeData() {
-        // Ambil langsung dari root database orders
         db.ref('orders').on('value', (snapshot) => {
             const tbody = document.getElementById("table-body");
             tbody.innerHTML = "";
@@ -294,37 +299,30 @@
                         }
                         tr.appendChild(tdCutting);
 
-                        // 7. Pengambilan (Ceklis)
+                        // 7. Status Pengambilan (Dropdown khusus Admin, Teks biasa untuk Pengunjung)
                         const tdAmbil = document.createElement("td");
                         tdAmbil.style.textAlign = "center";
-                        if (item.sudahAmbil) {
-                            tdAmbil.innerHTML = `<span class="status-diambil">✅ Sudah</span>`;
+                        
+                        if (isAdmin) {
+                            const currentVal = item.sudahAmbil ? "Sudah Ambil" : "Belum Ambil";
+                            const selAmbil = createDropdown(["Belum Ambil", "Sudah Ambil"], currentVal, (val) => {
+                                const isAmbil = (val === "Sudah Ambil");
+                                db.ref(`orders/${cat}/${id}/sudahAmbil`).set(isAmbil);
+                            });
+                            tdAmbil.appendChild(selAmbil);
                         } else {
-                            const btnAmbil = document.createElement("button");
-                            btnAmbil.className = "btn-ambil";
-                            btnAmbil.innerHTML = "⬜ Ceklis";
-                            btnAmbil.onclick = () => {
-                                if (confirm(`Tandai bahwa ${item.nama} sudah mengambil kaos?`)) {
-                                    db.ref(`orders/${cat}/${id}/sudahAmbil`).set(true);
-                                }
-                            };
-                            tdAmbil.appendChild(btnAmbil);
+                            const spanAmbil = document.createElement("span");
+                            spanAmbil.className = "status-ambil-text " + (item.sudahAmbil ? "ambil-sudah" : "ambil-belum");
+                            spanAmbil.textContent = item.sudahAmbil ? "✅ Sudah Ambil" : "❌ Belum Ambil";
+                            tdAmbil.appendChild(spanAmbil);
                         }
                         tr.appendChild(tdAmbil);
 
-                        // 8. Aksi (Admin)
+                        // 8. Aksi Hapus (Hanya Khusus Admin)
                         if (isAdmin) {
                             const tdAksi = document.createElement("td");
                             tdAksi.style.textAlign = "center";
                             
-                            if (item.sudahAmbil) {
-                                const btnReset = document.createElement("button");
-                                btnReset.className = "btn-reset";
-                                btnReset.textContent = "Batal";
-                                btnReset.onclick = () => db.ref(`orders/${cat}/${id}/sudahAmbil`).set(false);
-                                tdAksi.appendChild(btnReset);
-                            }
-
                             const btnDel = document.createElement("button");
                             btnDel.className = "btn-delete";
                             btnDel.textContent = "Hapus";
@@ -370,13 +368,14 @@
         const size = document.getElementById("new-size").value;
         const lengan = document.getElementById("new-lengan").value;
         const cutting = document.getElementById("new-cutting").value;
+        const sudahAmbil = (document.getElementById("new-ambil").value === "true");
 
         if (!nama) {
             alert("Nama pemesan wajib diisi!");
             return;
         }
 
-        const newItem = { nama, status, size, lengan, cutting, sudahAmbil: false };
+        const newItem = { nama, status, size, lengan, cutting, sudahAmbil };
         db.ref(`orders/${kategori}`).push(newItem)
             .then(() => {
                 document.getElementById("new-nama").value = "";
