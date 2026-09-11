@@ -29,7 +29,7 @@
         .table-responsive { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
         
         /* Tabel */
-        table { width: 100%; border-collapse: collapse; margin-top: 5px; min-width: 650px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 5px; min-width: 700px; }
         th, td { border: 1px solid #e0e0e0; padding: 10px 8px; text-align: left; font-size: 13px; }
         th { background-color: #1f4e78; color: white; font-weight: 600; text-align: center; }
         tr:nth-child(even) { background-color: #f8fafc; }
@@ -45,6 +45,11 @@
         
         .badge-cutting { background: #e2e8f0; color: #334155; padding: 3px 6px; border-radius: 4px; font-weight: 600; font-size: 11px; }
         
+        /* Badge Kategori Terkunci */
+        .badge-kategori { padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 11px; display: inline-block; }
+        .kat-acara { background-color: #e3f2fd; color: #0d47a1; border: 1px solid #bbdefb; }
+        .kat-kaos { background-color: #f3e5f5; color: #4a148c; border: 1px solid #e1bee7; }
+
         .status-ambil-text { font-weight: bold; font-size: 12px; padding: 4px 8px; border-radius: 4px; display: inline-block; }
         .ambil-sudah { color: #155724; background-color: #d4edda; }
         .ambil-belum { color: #721c24; background-color: #f8d7da; }
@@ -79,7 +84,7 @@
                 <input type="text" id="new-nama" placeholder="Nama pemesan" required>
             </div>
             <div>
-                <label style="font-size: 11px;">Kategori DB:</label>
+                <label style="font-size: 11px;">Pilih Kategori DB:</label>
                 <select id="new-kategori">
                     <option value="acara">Kaos + Acara</option>
                     <option value="kaos">Kaos Saja</option>
@@ -138,16 +143,17 @@
                 <tr>
                     <th style="width: 5%;">No</th>
                     <th>Nama Pemesan</th>
-                    <th style="width: 14%;">Status Bayar</th>
-                    <th style="width: 8%;">Size</th>
-                    <th style="width: 10%;">Lengan</th>
-                    <th style="width: 10%;">Cutting</th>
-                    <th style="width: 16%;">Pengambilan</th>
+                    <th style="width: 14%;">Kategori</th>
+                    <th style="width: 13%;">Status Bayar</th>
+                    <th style="width: 7%;">Size</th>
+                    <th style="width: 9%;">Lengan</th>
+                    <th style="width: 9%;">Cutting</th>
+                    <th style="width: 15%;">Pengambilan</th>
                     <th id="th-aksi" style="width: 8%; display: none;">Aksi</th>
                 </tr>
             </thead>
             <tbody id="table-body">
-                <tr><td colspan="7" style="text-align:center; padding: 20px;">Memuat data...</td></tr>
+                <tr><td colspan="8" style="text-align:center; padding: 20px;">Memuat data...</td></tr>
             </tbody>
         </table>
     </div>
@@ -212,7 +218,7 @@
             tbody.innerHTML = "";
 
             if (!snapshot.exists()) {
-                tbody.innerHTML = "<tr><td colspan='7' style='text-align:center;'>Belum ada data pemesan.</td></tr>";
+                tbody.innerHTML = "<tr><td colspan='8' style='text-align:center;'>Belum ada data pemesan.</td></tr>";
                 document.getElementById("total-count").textContent = "0";
                 return;
             }
@@ -238,7 +244,21 @@
                         tdNama.textContent = item.nama || "-";
                         tr.appendChild(tdNama);
 
-                        // 3. Status Pembayaran
+                        // 3. Kategori (PERMANEN - TIDAK BISA DIEDIT SIAPAPUN)
+                        const tdKat = document.createElement("td");
+                        tdKat.style.textAlign = "center";
+                        const spanKat = document.createElement("span");
+                        if (cat === 'acara') {
+                            spanKat.className = "badge-kategori kat-acara";
+                            spanKat.textContent = "Kaos + Acara";
+                        } else {
+                            spanKat.className = "badge-kategori kat-kaos";
+                            spanKat.textContent = "Kaos Saja";
+                        }
+                        tdKat.appendChild(spanKat);
+                        tr.appendChild(tdKat);
+
+                        // 4. Status Pembayaran
                         const tdStatus = document.createElement("td");
                         tdStatus.style.textAlign = "center";
                         if (isAdmin) {
@@ -257,7 +277,7 @@
                         }
                         tr.appendChild(tdStatus);
 
-                        // 4. Ukuran
+                        // 5. Ukuran
                         const tdSize = document.createElement("td");
                         tdSize.style.textAlign = "center";
                         if (isAdmin) {
@@ -270,7 +290,7 @@
                         }
                         tr.appendChild(tdSize);
 
-                        // 5. Lengan
+                        // 6. Lengan
                         const tdLengan = document.createElement("td");
                         tdLengan.style.textAlign = "center";
                         if (isAdmin) {
@@ -283,7 +303,7 @@
                         }
                         tr.appendChild(tdLengan);
 
-                        // 6. Cutting
+                        // 7. Cutting
                         const tdCutting = document.createElement("td");
                         tdCutting.style.textAlign = "center";
                         if (isAdmin) {
@@ -299,7 +319,7 @@
                         }
                         tr.appendChild(tdCutting);
 
-                        // 7. Status Pengambilan (Dropdown khusus Admin, Teks biasa untuk Pengunjung)
+                        // 8. Status Pengambilan (Dropdown khusus Admin, Teks biasa untuk Pengunjung)
                         const tdAmbil = document.createElement("td");
                         tdAmbil.style.textAlign = "center";
                         
@@ -318,7 +338,7 @@
                         }
                         tr.appendChild(tdAmbil);
 
-                        // 8. Aksi Hapus (Hanya Khusus Admin)
+                        // 9. Aksi Hapus (Khusus Admin)
                         if (isAdmin) {
                             const tdAksi = document.createElement("td");
                             tdAksi.style.textAlign = "center";
@@ -343,7 +363,7 @@
             document.getElementById("total-count").textContent = index - 1;
         }, (error) => {
             console.error("Firebase error: ", error);
-            document.getElementById("table-body").innerHTML = `<tr><td colspan='7' style='text-align:center; color:red;'>Gagal mengambil data dari server.</td></tr>`;
+            document.getElementById("table-body").innerHTML = `<tr><td colspan='8' style='text-align:center; color:red;'>Gagal mengambil data dari server.</td></tr>`;
         });
     }
 
