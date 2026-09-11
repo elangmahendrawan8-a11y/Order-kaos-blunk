@@ -5,60 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Pengambilan Kaos - BLNK SQUAD</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 20px; background-color: #f4f6f9; color: #333; }
-        h1 { text-align: center; color: #1f4e78; margin-bottom: 5px; text-transform: uppercase; }
-        .subtitle { text-align: center; color: #666; margin-bottom: 20px; font-size: 14px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 15px; background-color: #f4f6f9; color: #333; }
+        h1 { text-align: center; color: #1f4e78; margin-bottom: 5px; text-transform: uppercase; font-size: 20px; }
+        .subtitle { text-align: center; color: #666; margin-bottom: 20px; font-size: 13px; }
         .logo-container { text-align: center; margin-bottom: 10px; }
-        .logo-img { max-width: 120px; height: auto; border-radius: 8px; }
+        .logo-img { max-width: 100px; height: auto; border-radius: 8px; }
         
-        .container { max-width: 1100px; margin: 0 auto; background: #fff; padding: 25px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        .container { max-width: 1000px; margin: 0 auto; background: #fff; padding: 15px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
         
-        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
-        .admin-btn { background-color: #1f4e78; color: white; border: none; padding: 10px 18px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 13px; }
+        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px; }
+        .total-badge { font-size: 14px; font-weight: bold; color: #1f4e78; background: #eef2f5; padding: 8px 12px; border-radius: 6px; }
+        .admin-btn { background-color: #1f4e78; color: white; border: none; padding: 10px 16px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 13px; }
         .admin-btn.active { background-color: #e74c3c; }
-        .btn-history { background-color: #e67e22; color: white; border: none; padding: 10px 18px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 13px; }
         
         /* Form Admin */
-        .form-card { background-color: #eef2f5; padding: 20px; border-radius: 8px; margin-bottom: 25px; border: 1px solid #dcdfe3; display: none; }
+        .form-card { background-color: #eef2f5; padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #dcdfe3; display: none; }
         .form-card.show { display: block; }
-        .form-card h3 { margin-top: 0; color: #1f4e78; }
-        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 15px; }
-        .btn-submit { background-color: #27ae60; color: white; border: none; padding: 10px 20px; font-size: 14px; font-weight: bold; border-radius: 5px; cursor: pointer; width: 100%; }
+        .form-card h3 { margin-top: 0; color: #1f4e78; font-size: 16px; }
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 12px; }
+        .btn-submit { background-color: #27ae60; color: white; border: none; padding: 10px; font-size: 14px; font-weight: bold; border-radius: 5px; cursor: pointer; width: 100%; }
+        
+        /* Pembungkus Tabel Agar Bisa Scroll di HP */
+        .table-responsive { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
         
         /* Tabel */
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; table-layout: auto; }
-        th, td { border: 1px solid #e0e0e0; padding: 12px 10px; text-align: left; font-size: 14px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 5px; min-width: 600px; }
+        th, td { border: 1px solid #e0e0e0; padding: 10px 8px; text-align: left; font-size: 13px; }
         th { background-color: #1f4e78; color: white; font-weight: 600; text-align: center; }
         tr:nth-child(even) { background-color: #f8fafc; }
         tr.sudah-ambil-row { background-color: #f1f8f5; }
         
-        select, input[type="text"] { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; font-size: 13px; }
+        select, input[type="text"] { width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; font-size: 12px; }
         
         /* Badges & Buttons */
-        .status-badge { padding: 5px 10px; border-radius: 12px; font-weight: bold; display: inline-block; font-size: 12px; text-align: center; }
+        .status-badge { padding: 4px 8px; border-radius: 12px; font-weight: bold; display: inline-block; font-size: 11px; text-align: center; }
         .status-lunas { background-color: #d4edda; color: #155724; }
         .status-dp { background-color: #fff3cd; color: #856404; }
         .status-belum { background-color: #f8d7da; color: #721c24; }
         
-        .badge-cutting { background: #e2e8f0; color: #334155; padding: 4px 8px; border-radius: 4px; font-weight: 600; font-size: 12px; }
+        .badge-cutting { background: #e2e8f0; color: #334155; padding: 3px 6px; border-radius: 4px; font-weight: 600; font-size: 11px; }
         
-        .btn-ambil { background-color: #27ae60; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 12px; transition: 0.2s; }
+        .btn-ambil { background-color: #27ae60; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 11px; }
         .btn-ambil:hover { background-color: #219150; }
-        .status-diambil { color: #27ae60; font-weight: bold; font-size: 13px; display: inline-block; }
+        .status-diambil { color: #27ae60; font-weight: bold; font-size: 12px; display: inline-block; }
         
-        .btn-delete { background-color: #e74c3c; color: white; border: none; padding: 5px 8px; border-radius: 4px; cursor: pointer; font-size: 11px; }
-        .btn-reset { background-color: #95a5a6; color: white; border: none; padding: 5px 8px; border-radius: 4px; cursor: pointer; font-size: 11px; margin-bottom: 3px; }
-
-        /* Modal Data Lama */
-        .modal { display: none; position: fixed; z-index: 10; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
-        .modal-content { background: white; margin: 5% auto; padding: 20px; max-width: 900px; border-radius: 8px; max-height: 80vh; overflow-y: auto; }
-        .close-modal { float: right; font-size: 20px; font-weight: bold; cursor: pointer; color: #aaa; }
-
-        @media (max-width: 768px) {
-            .container { padding: 10px; }
-            table, th, td { font-size: 12px; padding: 8px 5px; }
-            .btn-ambil { padding: 4px 8px; font-size: 11px; }
-        }
+        .btn-delete { background-color: #e74c3c; color: white; border: none; padding: 4px 6px; border-radius: 4px; cursor: pointer; font-size: 10px; }
+        .btn-reset { background-color: #95a5a6; color: white; border: none; padding: 4px 6px; border-radius: 4px; cursor: pointer; font-size: 10px; margin-bottom: 3px; }
     </style>
 
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
@@ -75,7 +67,7 @@
     <p class="subtitle">Silakan ceklis nama Anda jika sudah mengambil kaos di tempat.</p>
     
     <div class="top-bar">
-        <button class="btn-history" onclick="openHistoryModal()">📋 Cek Data Lama / Archive</button>
+        <div class="total-badge">📋 Total Orderan: <span id="total-count">0</span> Orang</div>
         <button id="btn-login" class="admin-btn" onclick="toggleAdmin()">🔒 Login Edit (Panitia)</button>
     </div>
 
@@ -84,11 +76,18 @@
         <h3>+ Tambah Orderan Baru</h3>
         <div class="form-grid">
             <div>
-                <label>Nama Pemesan:</label>
+                <label style="font-size: 11px;">Nama Pemesan:</label>
                 <input type="text" id="new-nama" placeholder="Nama pemesan" required>
             </div>
             <div>
-                <label>Status Bayar:</label>
+                <label style="font-size: 11px;">Kategori DB:</label>
+                <select id="new-kategori">
+                    <option value="acara">Kaos + Acara</option>
+                    <option value="kaos">Kaos Saja</option>
+                </select>
+            </div>
+            <div>
+                <label style="font-size: 11px;">Status Bayar:</label>
                 <select id="new-status">
                     <option value="Lunas">Lunas</option>
                     <option value="Masih DP">Masih DP</option>
@@ -96,7 +95,7 @@
                 </select>
             </div>
             <div>
-                <label>Ukuran Baju:</label>
+                <label style="font-size: 11px;">Ukuran Baju:</label>
                 <select id="new-size">
                     <option value="S">S</option>
                     <option value="M">M</option>
@@ -109,14 +108,14 @@
                 </select>
             </div>
             <div>
-                <label>Jenis Lengan:</label>
+                <label style="font-size: 11px;">Jenis Lengan:</label>
                 <select id="new-lengan">
                     <option value="Pendek" selected>Pendek</option>
                     <option value="Panjang">Panjang</option>
                 </select>
             </div>
             <div>
-                <label>Cutting Baju:</label>
+                <label style="font-size: 11px;">Cutting Baju:</label>
                 <select id="new-cutting">
                     <option value="Reguler" selected>Reguler</option>
                     <option value="Boxy">Boxy</option>
@@ -126,43 +125,24 @@
         <button class="btn-submit" onclick="tambahPemesan()">Simpan Ke Daftar</button>
     </div>
 
-    <!-- Tabel Utama -->
-    <table>
-        <thead>
-            <tr>
-                <th style="width: 5%;">No</th>
-                <th style="width: 25%;">Nama Pemesan</th>
-                <th style="width: 15%;">Status Bayar</th>
-                <th style="width: 10%;">Ukuran</th>
-                <th style="width: 12%;">Lengan</th>
-                <th style="width: 12%;">Cutting</th>
-                <th style="width: 13%;">Pengambilan</th>
-                <th id="th-aksi" style="width: 8%; display: none;">Aksi</th>
-            </tr>
-        </thead>
-        <tbody id="table-body"></tbody>
-    </table>
-</div>
-
-<!-- Modal Pop-up Cek Data Lama -->
-<div id="historyModal" class="modal">
-    <div class="modal-content">
-        <span class="close-modal" onclick="closeHistoryModal()">&times;</span>
-        <h2>📋 Arsip Data Lama</h2>
-        <p style="font-size: 13px; color: #666;">Daftar orderan dari versi sebelumnya.</p>
-        <table style="margin-top: 15px;">
+    <!-- Pembungkus Responsive untuk HP -->
+    <div class="table-responsive">
+        <table>
             <thead>
                 <tr>
-                    <th>No</th>
-                    <th>Nama</th>
-                    <th>Status Bayar</th>
-                    <th>Ukuran</th>
-                    <th>Lengan</th>
-                    <th>Cutting</th>
-                    <th>Status Ambil</th>
+                    <th style="width: 5%;">No</th>
+                    <th>Nama Pemesan</th>
+                    <th style="width: 14%;">Status</th>
+                    <th style="width: 10%;">Size</th>
+                    <th style="width: 12%;">Lengan</th>
+                    <th style="width: 12%;">Cutting</th>
+                    <th style="width: 16%;">Pengambilan</th>
+                    <th id="th-aksi" style="width: 10%; display: none;">Aksi</th>
                 </tr>
             </thead>
-            <tbody id="history-table-body"></tbody>
+            <tbody id="table-body">
+                <tr><td colspan="7" style="text-align:center; padding: 20px;">Memuat data...</td></tr>
+            </tbody>
         </table>
     </div>
 </div>
@@ -188,40 +168,6 @@
     const lenganOptions = ["Pendek", "Panjang"];
     const cuttingOptions = ["Reguler", "Boxy"];
     const statusOptions = ["Lunas", "Masih DP", "Belum Lunas"];
-
-    // Otomatis pindahkan data lama ke struktur tabel baru tanpa input manual
-    function migrasiDataLamaOtomatis() {
-        if (localStorage.getItem('blnk_migrated_v2')) return;
-
-        db.ref('orders').once('value', (snapshot) => {
-            if (!snapshot.exists()) return;
-
-            const dataLama = snapshot.val();
-            const updates = {};
-
-            ['acara', 'kaos'].forEach(cat => {
-                if (dataLama[cat]) {
-                    Object.keys(dataLama[cat]).forEach(id => {
-                        const item = dataLama[cat][id];
-                        const newRefKey = db.ref('orders_v2').push().key;
-                        updates[`orders_v2/${newRefKey}`] = {
-                            nama: item.nama || "",
-                            status: item.status || "Belum Lunas",
-                            size: item.size || "L",
-                            lengan: item.lengan || "Pendek",
-                            cutting: item.cutting || "Reguler",
-                            sudahAmbil: item.sudahAmbil || false,
-                            isArchived: false
-                        };
-                    });
-                }
-            });
-
-            db.ref().update(updates).then(() => {
-                localStorage.setItem('blnk_migrated_v2', 'true');
-            });
-        });
-    }
 
     function toggleAdmin() {
         if (isAdmin) {
@@ -254,136 +200,152 @@
         fetchRealtimeData();
     }
 
-    function renderTable(dataObj) {
-        const tbody = document.getElementById("table-body");
-        tbody.innerHTML = "";
+    function fetchRealtimeData() {
+        // Ambil langsung dari root database orders
+        db.ref('orders').on('value', (snapshot) => {
+            const tbody = document.getElementById("table-body");
+            tbody.innerHTML = "";
 
-        if (!dataObj) return;
-
-        let index = 1;
-        Object.keys(dataObj).forEach(id => {
-            const item = dataObj[id];
-            if (item.isArchived) return;
-
-            const tr = document.createElement("tr");
-            if (item.sudahAmbil) tr.className = "sudah-ambil-row";
-
-            // 1. No
-            const tdNo = document.createElement("td");
-            tdNo.textContent = index++;
-            tdNo.style.textAlign = "center";
-            tr.appendChild(tdNo);
-
-            // 2. Nama
-            const tdNama = document.createElement("td");
-            tdNama.textContent = item.nama;
-            tr.appendChild(tdNama);
-
-            // 3. Status Pembayaran
-            const tdStatus = document.createElement("td");
-            tdStatus.style.textAlign = "center";
-            if (isAdmin) {
-                const selStatus = createDropdown(statusOptions, item.status, (val) => {
-                    db.ref(`orders_v2/${id}/status`).set(val);
-                });
-                tdStatus.appendChild(selStatus);
-            } else {
-                const badge = document.createElement("span");
-                badge.textContent = item.status || "Belum Lunas";
-                badge.className = "status-badge ";
-                if (item.status === "Lunas") badge.className += "status-lunas";
-                else if (item.status === "Masih DP") badge.className += "status-dp";
-                else badge.className += "status-belum";
-                tdStatus.appendChild(badge);
+            if (!snapshot.exists()) {
+                tbody.innerHTML = "<tr><td colspan='7' style='text-align:center;'>Belum ada data pemesan.</td></tr>";
+                document.getElementById("total-count").textContent = "0";
+                return;
             }
-            tr.appendChild(tdStatus);
 
-            // 4. Ukuran
-            const tdSize = document.createElement("td");
-            tdSize.style.textAlign = "center";
-            if (isAdmin) {
-                const selSize = createDropdown(sizeOptions, item.size, (val) => {
-                    db.ref(`orders_v2/${id}/size`).set(val);
-                });
-                tdSize.appendChild(selSize);
-            } else {
-                tdSize.textContent = item.size || "-";
-            }
-            tr.appendChild(tdSize);
+            const data = snapshot.val();
+            let index = 1;
 
-            // 5. Lengan
-            const tdLengan = document.createElement("td");
-            tdLengan.style.textAlign = "center";
-            if (isAdmin) {
-                const selLengan = createDropdown(lenganOptions, item.lengan, (val) => {
-                    db.ref(`orders_v2/${id}/lengan`).set(val);
-                });
-                tdLengan.appendChild(selLengan);
-            } else {
-                tdLengan.textContent = item.lengan || "Pendek";
-            }
-            tr.appendChild(tdLengan);
+            ['acara', 'kaos'].forEach(cat => {
+                if (data[cat]) {
+                    Object.keys(data[cat]).forEach(id => {
+                        const item = data[cat][id];
+                        const tr = document.createElement("tr");
+                        if (item.sudahAmbil) tr.className = "sudah-ambil-row";
 
-            // 6. Cutting
-            const tdCutting = document.createElement("td");
-            tdCutting.style.textAlign = "center";
-            if (isAdmin) {
-                const selCutting = createDropdown(cuttingOptions, item.cutting, (val) => {
-                    db.ref(`orders_v2/${id}/cutting`).set(val);
-                });
-                tdCutting.appendChild(selCutting);
-            } else {
-                const span = document.createElement("span");
-                span.className = "badge-cutting";
-                span.textContent = item.cutting || "Reguler";
-                tdCutting.appendChild(span);
-            }
-            tr.appendChild(tdCutting);
+                        // 1. No
+                        const tdNo = document.createElement("td");
+                        tdNo.textContent = index++;
+                        tdNo.style.textAlign = "center";
+                        tr.appendChild(tdNo);
 
-            // 7. Pengambilan (Ceklis)
-            const tdAmbil = document.createElement("td");
-            tdAmbil.style.textAlign = "center";
-            if (item.sudahAmbil) {
-                tdAmbil.innerHTML = `<span class="status-diambil">✅ Sudah Ambil</span>`;
-            } else {
-                const btnAmbil = document.createElement("button");
-                btnAmbil.className = "btn-ambil";
-                btnAmbil.innerHTML = "⬜ Ceklis Ambil";
-                btnAmbil.onclick = () => {
-                    if (confirm(`Tandai bahwa ${item.nama} sudah mengambil kaos?`)) {
-                        db.ref(`orders_v2/${id}/sudahAmbil`).set(true);
-                    }
-                };
-                tdAmbil.appendChild(btnAmbil);
-            }
-            tr.appendChild(tdAmbil);
+                        // 2. Nama
+                        const tdNama = document.createElement("td");
+                        tdNama.textContent = item.nama || "-";
+                        tr.appendChild(tdNama);
 
-            // 8. Aksi (Admin)
-            if (isAdmin) {
-                const tdAksi = document.createElement("td");
-                tdAksi.style.textAlign = "center";
-                
-                if (item.sudahAmbil) {
-                    const btnReset = document.createElement("button");
-                    btnReset.className = "btn-reset";
-                    btnReset.textContent = "Batal Ambil";
-                    btnReset.onclick = () => db.ref(`orders_v2/${id}/sudahAmbil`).set(false);
-                    tdAksi.appendChild(btnReset);
+                        // 3. Status Pembayaran
+                        const tdStatus = document.createElement("td");
+                        tdStatus.style.textAlign = "center";
+                        if (isAdmin) {
+                            const selStatus = createDropdown(statusOptions, item.status || "Belum Lunas", (val) => {
+                                db.ref(`orders/${cat}/${id}/status`).set(val);
+                            });
+                            tdStatus.appendChild(selStatus);
+                        } else {
+                            const badge = document.createElement("span");
+                            badge.textContent = item.status || "Belum Lunas";
+                            badge.className = "status-badge ";
+                            if (item.status === "Lunas") badge.className += "status-lunas";
+                            else if (item.status === "Masih DP") badge.className += "status-dp";
+                            else badge.className += "status-belum";
+                            tdStatus.appendChild(badge);
+                        }
+                        tr.appendChild(tdStatus);
+
+                        // 4. Ukuran
+                        const tdSize = document.createElement("td");
+                        tdSize.style.textAlign = "center";
+                        if (isAdmin) {
+                            const selSize = createDropdown(sizeOptions, item.size || "L", (val) => {
+                                db.ref(`orders/${cat}/${id}/size`).set(val);
+                            });
+                            tdSize.appendChild(selSize);
+                        } else {
+                            tdSize.textContent = item.size || "-";
+                        }
+                        tr.appendChild(tdSize);
+
+                        // 5. Lengan
+                        const tdLengan = document.createElement("td");
+                        tdLengan.style.textAlign = "center";
+                        if (isAdmin) {
+                            const selLengan = createDropdown(lenganOptions, item.lengan || "Pendek", (val) => {
+                                db.ref(`orders/${cat}/${id}/lengan`).set(val);
+                            });
+                            tdLengan.appendChild(selLengan);
+                        } else {
+                            tdLengan.textContent = item.lengan || "Pendek";
+                        }
+                        tr.appendChild(tdLengan);
+
+                        // 6. Cutting
+                        const tdCutting = document.createElement("td");
+                        tdCutting.style.textAlign = "center";
+                        if (isAdmin) {
+                            const selCutting = createDropdown(cuttingOptions, item.cutting || "Reguler", (val) => {
+                                db.ref(`orders/${cat}/${id}/cutting`).set(val);
+                            });
+                            tdCutting.appendChild(selCutting);
+                        } else {
+                            const span = document.createElement("span");
+                            span.className = "badge-cutting";
+                            span.textContent = item.cutting || "Reguler";
+                            tdCutting.appendChild(span);
+                        }
+                        tr.appendChild(tdCutting);
+
+                        // 7. Pengambilan (Ceklis)
+                        const tdAmbil = document.createElement("td");
+                        tdAmbil.style.textAlign = "center";
+                        if (item.sudahAmbil) {
+                            tdAmbil.innerHTML = `<span class="status-diambil">✅ Sudah</span>`;
+                        } else {
+                            const btnAmbil = document.createElement("button");
+                            btnAmbil.className = "btn-ambil";
+                            btnAmbil.innerHTML = "⬜ Ceklis";
+                            btnAmbil.onclick = () => {
+                                if (confirm(`Tandai bahwa ${item.nama} sudah mengambil kaos?`)) {
+                                    db.ref(`orders/${cat}/${id}/sudahAmbil`).set(true);
+                                }
+                            };
+                            tdAmbil.appendChild(btnAmbil);
+                        }
+                        tr.appendChild(tdAmbil);
+
+                        // 8. Aksi (Admin)
+                        if (isAdmin) {
+                            const tdAksi = document.createElement("td");
+                            tdAksi.style.textAlign = "center";
+                            
+                            if (item.sudahAmbil) {
+                                const btnReset = document.createElement("button");
+                                btnReset.className = "btn-reset";
+                                btnReset.textContent = "Batal";
+                                btnReset.onclick = () => db.ref(`orders/${cat}/${id}/sudahAmbil`).set(false);
+                                tdAksi.appendChild(btnReset);
+                            }
+
+                            const btnDel = document.createElement("button");
+                            btnDel.className = "btn-delete";
+                            btnDel.textContent = "Hapus";
+                            btnDel.onclick = () => {
+                                if(confirm(`Hapus data ${item.nama}?`)) {
+                                    db.ref(`orders/${cat}/${id}`).remove();
+                                }
+                            };
+                            tdAksi.appendChild(btnDel);
+                            tr.appendChild(tdAksi);
+                        }
+
+                        tbody.appendChild(tr);
+                    });
                 }
+            });
 
-                const btnDel = document.createElement("button");
-                btnDel.className = "btn-delete";
-                btnDel.textContent = "Hapus";
-                btnDel.onclick = () => {
-                    if(confirm(`Hapus data ${item.nama}?`)) {
-                        db.ref(`orders_v2/${id}`).remove();
-                    }
-                };
-                tdAksi.appendChild(btnDel);
-                tr.appendChild(tdAksi);
-            }
-
-            tbody.appendChild(tr);
+            document.getElementById("total-count").textContent = index - 1;
+        }, (error) => {
+            console.error("Firebase error: ", error);
+            document.getElementById("table-body").innerHTML = `<tr><td colspan='7' style='text-align:center; color:red;'>Gagal mengambil data dari server.</td></tr>`;
         });
     }
 
@@ -400,16 +362,10 @@
         return select;
     }
 
-    function fetchRealtimeData() {
-        db.ref('orders_v2').on('value', (snapshot) => {
-            const data = snapshot.val() || {};
-            renderTable(data);
-        });
-    }
-
     function tambahPemesan() {
         if (!isAdmin) return;
         const nama = document.getElementById("new-nama").value.trim();
+        const kategori = document.getElementById("new-kategori").value;
         const status = document.getElementById("new-status").value;
         const size = document.getElementById("new-size").value;
         const lengan = document.getElementById("new-lengan").value;
@@ -420,35 +376,18 @@
             return;
         }
 
-        const newItem = { nama, status, size, lengan, cutting, sudahAmbil: false, isArchived: false };
-        db.ref('orders_v2').push(newItem)
+        const newItem = { nama, status, size, lengan, cutting, sudahAmbil: false };
+        db.ref(`orders/${kategori}`).push(newItem)
             .then(() => {
                 document.getElementById("new-nama").value = "";
             })
             .catch((err) => alert("Gagal menambah data: " + err.message));
     }
 
-    function openHistoryModal() {
-        document.getElementById("historyModal").style.display = "block";
-        const tbody = document.getElementById("history-table-body");
-        tbody.innerHTML = "<tr><td colspan='7' style='text-align:center;'>Memuat data lama...</td></tr>";
+    document.addEventListener("DOMContentLoaded", () => {
+        fetchRealtimeData();
+    });
+</script>
 
-        db.ref('orders').once('value', (snapshot) => {
-            tbody.innerHTML = "";
-            let idx = 1;
-
-            if (snapshot.exists()) {
-                const data = snapshot.val();
-                ['acara', 'kaos'].forEach(cat => {
-                    if (data[cat]) {
-                        Object.values(data[cat]).forEach(item => {
-                            const tr = document.createElement("tr");
-                            tr.innerHTML = `
-                                <td style="text-align:center;">${idx++}</td>
-                                <td>${item.nama || '-'}</td>
-                                <td style="text-align:center;">${item.status || '-'}</td>
-                                <td style="text-align:center;">${item.size || '-'}</td>
-                                <td style="text-align:center;">${item.lengan || '-'}</td>
-                                <td style="text-align:center;">Reguler</td>
-                                <td style="text-align:center;">${item.sudahAmbil ? '✅ Sudah' : '❌ Belum'}</td>
-                  
+</body>
+</html>
